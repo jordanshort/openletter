@@ -1,0 +1,32 @@
+
+
+
+.new-post-root {
+    display: block;
+}
+
+.new-post-body-container {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.new-post-body-container  {
+    /* float: right; */
+    text-align: left;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.editor-container {
+    /* display: inline-block; */
+    margin-top: 20px;
+    width: 1000px;
+    border: 1px solid red;
+    height: 100vh;
+    
+}
+
+.editor-container div {
+    border: none;
+}

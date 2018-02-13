@@ -9,10 +9,10 @@ import { authenticated } from '../../redux/reducer';
 class Home extends Component{
 
     componentDidMount(){
-        // let { user, authenticated, history } = this.props;
-        // if (!user){
-        //     authenticated(history);
-        // }
+        let { user, authenticated, history } = this.props;
+        if (!user){
+            authenticated(history);
+        }
     }
 
     render(){
@@ -29,6 +29,7 @@ class Home extends Component{
                             <Link to="/myletters"><h4>My Letters</h4></Link>
                             <h4>Saved For Later</h4>
                             <h4>Subscriptions</h4>
+                            {/* <h4>Welcome {this.props.user ? this.props.user.first_name : 'nameholder'}</h4> */}
                         </div>
                     </div>
                     <div className="home-scroll-container">
