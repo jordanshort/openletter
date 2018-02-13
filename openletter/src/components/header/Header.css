@@ -1,7 +1,9 @@
 .header {
+    position: fixed;
+    top: 0;
     margin-bottom: 20px;
     width: 100vw;
-    min-width: 1000px;
+    min-width: 1100px;
     height: 60px;
     background: red;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1),
