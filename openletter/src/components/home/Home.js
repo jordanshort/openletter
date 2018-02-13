@@ -4,9 +4,19 @@ import './Home.css';
 import { Link } from 'react-router-dom';
 import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
+import { authenticated } from '../../redux/reducer';
 
 class Home extends Component{
+
+    componentDidMount(){
+        // let { user, authenticated, history } = this.props;
+        // if (!user){
+        //     authenticated(history);
+        // }
+    }
+
     render(){
+        if (!this.props.user){ return null}
         return(
             <div className="home-root">
                 <Header />
@@ -23,7 +33,7 @@ class Home extends Component{
                     </div>
                     <div className="home-scroll-container">
                         <div className="people-you-follow">
-                            <h1>Your Feed...</h1>
+                            <h1>Home</h1>
                             <LetterCard />
                             <LetterCard />
                             <LetterCard />
@@ -38,4 +48,8 @@ class Home extends Component{
     }
 }
 
-export default connect()(Home);
+function mapStateToProps(state){
+    return{user: state.user};
+};
+
+export default connect(mapStateToProps, { authenticated })(Home);

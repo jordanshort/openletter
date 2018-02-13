@@ -19,7 +19,7 @@ class Header extends Component{
         console.log(this.state.term);
         return(
             <div className="header">
-                <div className="header-logo">Logo here</div>
+                <div className="header-logo">OpenLetter</div>
                     <form className="input-group">
                         <input 
                         placeholder="Search"
@@ -28,7 +28,7 @@ class Header extends Component{
                         onChange={e => this.handleChange(e.target.value)}
                         />
                         <span className="input-group-btn">
-                        <button type="submit" className="btn btn-secondary">Search</button>
+                        <button type="submit" className="btn btn-secondary"><i className="fas fa-search fa-1x"/></button>
                         </span>
                     </form>
                 

@@ -5,7 +5,7 @@
     width: 100vw;
     min-width: 1100px;
     height: 60px;
-    background: red;
+    background: #36558F;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1),
     0 6px 6px 0 rgba(0, 0, 0, 0.2);
     display: flex;
@@ -16,6 +16,13 @@
 	align-content: stretch;
 }
 
+.header-logo {
+    font-family: 'Fugaz One', cursive;
+    color: #9da1a4;
+    font-size: 45px;
+        
+}
+
 .input-group {
     width: 375px;
 }
@@ -23,13 +30,26 @@
 .form-control {
     height: 35px;
     font-family: 'Open Sans', sans serif;
+    background: #283E69;
+    border-color: #7d8186;
+    color: #9da1a4;
     
 }
 
 .input-group button {
     height: 35px;
     font-family: 'Open Sans', sans serif;
+    background: #283E69;
+    border-color: #7d8186;
+    color: #7d8186;
     
+}
+.input-group a {
+    
+}
+
+.header-nav a {
+    /* color: #3C474B; */
 }
 
 
