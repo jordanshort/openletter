@@ -44,7 +44,9 @@ class MyLetterCard extends Component{
 }
 
 function mapStateToProps(state){
-    return { myLetters: state.myLetters };
+    return { 
+        myLetters: state.myLetters,
+     };
 };
 
 export default connect(mapStateToProps, { fetchMyLetters })(MyLetterCard);

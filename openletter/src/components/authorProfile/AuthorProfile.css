@@ -13,13 +13,19 @@
 }
 
 .author-profile-card {
+    font-family: 'Open Sans', sans-serif;
     margin-top: 20px;
     width: 750px;
     height: 500px;
     background-color: #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1),
     0 1px 2px 0 rgba(0, 0, 0, .2);
-
+    display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
 }
 
 .author-letters {
@@ -27,4 +33,31 @@
     background: #f2f2f2;
     margin-top: 10px;
     text-align: left;
+}
+
+.author-profile-picture {
+    width: 150px;
+    height: 150px;
+    border: 1px solid green;
+    margin-bottom: 15px;
+}
+
+.author-profile-name {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.author-profile-birthday {
+    margin-bottom: 20px;
+}
+
+.author-profile-job {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.author-profile-employer {
+    margin-bottom: 40px;
 }

@@ -4,7 +4,8 @@ const express = require('express')
     , Auth0Strategy = require('passport-auth0')
     , massive = require('massive')
     , bodyParser = require('body-parser')
-    , letterctrl = require('./letterController');
+    , letterctrl = require('./letterController')
+    , userctrl = require('./userController');
 const app = express();
 require('dotenv').config();
 app.use(bodyParser.json());
@@ -87,5 +88,10 @@ app.post('/letters/new', letterctrl.post);
 app.get('/letters/mine', letterctrl.get);
 
 app.get('/letters/:id', letterctrl.getLetter);
+
+app.get('/authletters/:author', letterctrl.getAuthLetters);
+
+//user endpoints
+app.get('/user/:id', userctrl.getAuthor);
 
 app.listen(SERVER_PORT, () => console.log('Listening on port ' +SERVER_PORT));

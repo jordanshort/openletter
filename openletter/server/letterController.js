@@ -14,7 +14,8 @@ module.exports = {
     },
 
     get: function(req, res){
-        req.app.get('db').getUserLetters([req.user.id]).then( resp => {
+        let { id } = req.user;
+        req.app.get('db').getUserLetters([id]).then( resp => {
             res.status(200).send(resp);
         })
     },
@@ -25,4 +26,11 @@ module.exports = {
             res.status(200).send(resp[0])
         });
     },
+
+    getAuthLetters: function(req, res){
+        let id = Number(req.params.author);
+        req.app.get('db').getUserLetters([id]).then(resp => {
+            res.status(200).send(resp)
+        })
+    }
 }

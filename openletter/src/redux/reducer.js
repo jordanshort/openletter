@@ -8,24 +8,33 @@ const initialState = {
     topTen: [],
     recommended: [],
     followingLetters: [],
-    selectedLetter: {content: '<p>Letter</p>'}
+    selectedLetter: {content: '<p>Letter</p>'},
+    authorLetters: [],
+    author: {first_name: 'first_name', last_name: 'last_name'}
 }
 
 const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 const POST_LETTER = 'POST_LETTER';
 const FETCH_MY_LETTERS = 'FETCH_MY_LETTERS';
 const FETCH_THIS_LETTER = 'FETCH_THIS_LETTER';
+const FETCH_AUTHOR_LETTERS = 'FETCH_AUTHOR_LETTERS';
+const FETCH_AUTHOR = 'FETCH_AUTHOR';
 
 
 //reducer
 export default function reducer(state = initialState, action){
+    let { payload } = action;
     switch(action.type){
         case AUTHENTICATE_USER + '_FULFILLED':
-            return Object.assign({}, state, {user: action.payload});
+            return Object.assign({}, state, {user: payload});
         case FETCH_MY_LETTERS + '_FULFILLED':
-            return Object.assign({}, state, {myLetters: action.payload});
+            return Object.assign({}, state, {myLetters: payload});
         case FETCH_THIS_LETTER + '_FULFILLED':
-            return Object.assign({}, state, {selectedLetter: action.payload})
+            return Object.assign({}, state, {selectedLetter: payload});
+        case FETCH_AUTHOR_LETTERS + '_FULFILLED':
+            return Object.assign({}, state, {authorLetters: payload});
+        case FETCH_AUTHOR + '_FULFILLED':
+            return Object.assign({}, state, {author: payload});
         default: 
             return state;
     };
@@ -72,6 +81,26 @@ export function fetchThisLetter(id){
 
     return{
         type: FETCH_THIS_LETTER,
+        payload: promise
+    };
+};
+
+export function fetchAuthorLetters(id){
+    let promise = axios.get(`/authletters/${id}`).then(resp => {
+        return resp.data;
+    });
+    return{
+        type: FETCH_AUTHOR_LETTERS,
+        payload: promise
+    };
+};
+
+export function fetchAuthor(id){
+    let promise = axios.get(`/user/${id}`).then(resp => {
+        return resp.data;
+    });
+    return{
+        type: FETCH_AUTHOR,
         payload: promise
     };
 };

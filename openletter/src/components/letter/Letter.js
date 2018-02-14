@@ -27,7 +27,9 @@ class Home extends Component{
                         <div className="letter-author-container" >
                             <img src={selectedLetter.picture} alt="Author"/>
                             <div className="letter-auth">Author</div>
+                            <Link to={`/profile/${selectedLetter.author_id}`}>
                             <div>{selectedLetter.first_name} {selectedLetter.last_name}</div>
+                            </Link>
                             <button className=" letter-follow">Follow</button>
                         </div>
                         <div className="letter-author-container">
