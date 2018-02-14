@@ -1,0 +1,52 @@
+.myletters-root {
+    display: block;
+    background: #f2f2f2;
+    min-width: 1100px;
+}
+
+.myletters-body-container {
+    display: block; 
+}
+
+.side-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #f2f2f2;
+    /* border: 1px solid red; */
+    font-family: 'Open Sans', sans-serif;
+    display: block;
+    text-align: left;
+}
+
+.myletters-btn-container {
+    margin-left: 30px;
+    margin-bottom: 50px;
+}
+
+.myletters-btn-container button {
+    border-radius: 2px;
+    background: none;
+    border: 1px solid #3C474B;
+}
+
+.side-links h4 {
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+.myletters-scroll-container {
+    text-align: left;
+    margin-left: 250px;
+    margin-top: 70px;
+    /* border: 1px solid red; */
+    width: 750px;
+    height: calc(100vh-70px);
+}
+
+.my-letters h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}

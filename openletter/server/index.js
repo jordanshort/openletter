@@ -68,6 +68,7 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 
 //authentication endpoints
 app.get('/auth/authenticated', (req, res) => {
+    console.log(req.user);
     if (!req.user){
         res.status(404).send('Please Login')
     } else {

@@ -36,7 +36,7 @@ class Header extends Component{
                     <Link to="/home"><i className="fas fa-home fa-2x" /></Link>
                     <Link to="/profile"><i className="far fa-user fa-2x" /></Link>
                     <Link to="/newpost"><i className="fas fa-pencil-alt fa-2x" /></Link>
-                    <a href="http://localhost:6000/logout"><i className="fas fa-sign-out-alt fa-2x" /></a>
+                    <a href="http://localhost:4050/logout"><i className="fas fa-sign-out-alt fa-2x" /></a>
                     
                 </div>
             </div>

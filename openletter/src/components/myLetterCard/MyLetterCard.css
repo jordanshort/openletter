@@ -1,0 +1,115 @@
+.letter-card {
+    width: 700px;
+    height: 170px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1),
+    0 1px 2px 0 rgba(0, 0, 0, .2);
+    margin-top: 12px;
+    margin-left: 3px;
+    /* display: block; */
+    position: relative;
+}
+
+.card-top {
+    height: 130px;
+    width: 100%;
+    border: 1px solid red;
+    display: flex;
+
+}
+
+.card-author {
+    width: 125px;
+    height: 100%;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card-details-container {
+    width: calc(100% - 125px);
+    height: 100%;
+}
+
+.card-details {
+    height: 59px;
+    width: 100%;
+    border: 1px solid green;
+    padding-left: 5px;
+}
+
+.card-description {
+    height: 70px;
+    width: 100%;
+    border: 1px solid blue;
+    padding-top: 3px;
+    padding-left: 5px;
+}
+
+.card-bottom {
+    height: 40px;
+    width: 100%;
+    border: 1px solid orange;
+}
+
+.pic {
+    height: 85px;
+    width: 85px;
+    border: 1px solid violet;
+}
+
+.name {
+    height: 25px;
+    width: 100%;
+    border: 1px solid violet;    
+}
+
+.card-title {
+    height: 28px;
+    width: 100%;
+    background: pink;
+    padding-top: 5px;
+}
+
+.addressee {
+    margin-top: -5px;
+    height: 28px;
+    width: 100%;
+    background: orange;
+    padding-bottom: 3px;
+}
+
+.card-bottom {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cosigns {
+    position: relative;
+    left: 15px;
+}
+
+.card-responses {
+    position: relative;
+    left: 55px;
+}
+
+.card-edit {
+    position: relative;
+    left: 300px;
+}
+
+.card-delete {
+    position: relative;
+    left: 350px;
+}
+
+
+
+
+

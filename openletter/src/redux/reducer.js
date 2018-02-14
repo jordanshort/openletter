@@ -12,13 +12,17 @@ const initialState = {
 
 const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 const POST_LETTER = 'POST_LETTER';
+const FETCH_MY_LETTERS = 'FETCH_MY_LETTERS';
+
 
 //reducer
 export default function reducer(state = initialState, action){
     switch(action.type){
-        case AUTHENTICATE_USER:
+        case AUTHENTICATE_USER + '_FULFILLED':
             return Object.assign({}, state, {user: action.payload});
-        case POST_LETTER:
+        case POST_LETTER + '_FULFILLED':
+            return Object.assign({}, state, {myLetters: action.payload});
+        case FETCH_MY_LETTERS + '_FULFILLED':
             return Object.assign({}, state, {myLetters: action.payload});
         default: 
             return state;
@@ -38,7 +42,6 @@ export function authenticated(history){
 };
 
 export function postLetter(letter, history){
-    console.log(letter);
     let promise = axios.post('/letters/new', letter).then( resp => {
         return resp.data;
         history.push('/myletters');
@@ -47,5 +50,15 @@ export function postLetter(letter, history){
     return{
         type: POST_LETTER,
         payload: ['newPost']
+    };
+};
+
+export function fetchMyLetters(){
+    let promise = axios.get('/letters/mine').then( letters => {
+        return letters
+    });
+    return{
+        type: FETCH_MY_LETTERS,
+        payload: promise
     };
 };
