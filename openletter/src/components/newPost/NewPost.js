@@ -42,6 +42,23 @@ class NewPost extends Component{
 
 
     render(){
+        const modules= {
+            toolbar: [
+              [{ 'header': [1, 2, false] }],
+              ['bold', 'italic', 'underline','strike', 'blockquote'],
+              [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+              ['link', 'image'],
+              ['clean']
+            ],
+          };
+        
+        const  formats = [
+            'header',
+            'bold', 'italic', 'underline', 'strike', 'blockquote',
+            'list', 'bullet', 'indent',
+            'link', 'image'
+          ];
+
         return(
             <div className="new-post-root">
                 <Header />
@@ -55,6 +72,8 @@ class NewPost extends Component{
                             theme="snow"
                             value={this.state.text}
                             onChange={this.handleChange}
+                            modules = {modules}
+                            formats = {formats}
                              />
                              <button className="btn" onClick={() => this.onSubmit()}>Send</button>
                              <Link to="/home"><button className="btn">Cancel</button></Link>

@@ -1,0 +1,80 @@
+.letter-root {
+    display: block;
+    background: #f2f2f2;
+    min-width: 1100px;
+}
+
+.letter-body-container {
+    display: block; 
+    background: #f2f2f2;
+}
+
+.side-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #f2f2f2;
+    /* border: 1px solid red; */
+    font-family: 'Open Sans', sans-serif;
+    display: block;
+    text-align: left;
+}
+
+.letter-author-container {
+    width: 250px;
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+    align-content: stretch;
+    margin-bottom: 50px
+    
+}
+.letter-author-container img {
+    margin-bottom: 10px;
+}
+.letter-auth {
+    margin-bottom: 3px;
+}
+
+
+.letter-author-container button {
+    border-radius: 2px;
+    background: none;
+    border: 1px solid #3C474B;
+    width: 150px;
+    margin-bottom: 5px;
+}
+
+.letter-follow {
+    margin-top: 10px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.side-links h4 {
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+.letter-scroll-container {
+    text-align: left;
+    margin-left: 250px;
+    margin-top: 70px;
+    /* border: 1px solid red; */
+    width: 750px;
+    height: calc(100vh-70px);
+    border-radius: 2px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1),
+    rgba(0, 0, 0, .2);
+}
+
+.people-you-follow h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}

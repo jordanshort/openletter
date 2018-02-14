@@ -14,7 +14,7 @@
 .card-top {
     height: 130px;
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
 
 }
@@ -22,7 +22,7 @@
 .card-author {
     width: 125px;
     height: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,14 +38,14 @@
 .card-details {
     height: 59px;
     width: 100%;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     padding-left: 5px;
 }
 
 .card-description {
     height: 70px;
     width: 100%;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     padding-top: 3px;
     padding-left: 5px;
 }
@@ -53,25 +53,26 @@
 .card-bottom {
     height: 40px;
     width: 100%;
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
 }
 
 .pic {
     height: 85px;
     width: 85px;
-    border: 1px solid violet;
+    /* border: 1px solid violet; */
 }
 
 .name {
+    text-align: center;
     height: 25px;
     width: 100%;
-    border: 1px solid violet;    
+    /* border: 1px solid violet;     */
 }
 
 .card-title {
     height: 28px;
     width: 100%;
-    background: pink;
+    /* background: pink; */
     padding-top: 5px;
 }
 
@@ -79,11 +80,12 @@
     margin-top: -5px;
     height: 28px;
     width: 100%;
-    background: orange;
+    /* background: orange; */
     padding-bottom: 3px;
 }
 
 .card-bottom {
+    border-top: 1px solid rgba(0, 0, 0, .1);
     position: relative;
     display: flex;
     align-items: center;

@@ -82,6 +82,10 @@ app.get('/logout', (req, res) => {
 });
 
 //letter endpoints
-app.post('/letters/new', letterctrl.post)
+app.post('/letters/new', letterctrl.post);
+
+app.get('/letters/mine', letterctrl.get);
+
+app.get('/letters/:id', letterctrl.getLetter);
 
 app.listen(SERVER_PORT, () => console.log('Listening on port ' +SERVER_PORT));

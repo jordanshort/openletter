@@ -1,33 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './MyLetterCard.css';
+import { connect } from 'react-redux';
+import { fetchMyLetters } from '../../redux/reducer';
 
-export default function(props){
-    // const { title, description, addressedTo, content, first_name, last_name, picture } = this.props;
-    return(
-        <div className="letter-card">
-            <div className="card-top">
-                <div className="card-author">
-                    <div className="pic"></div>
-                    <div className="name"></div>
+class MyLetterCard extends Component{
+    componentDidMount(){
+        this.props.fetchMyLetters();
+    }
+
+    render(){
+        const letters = this.props.myLetters.map( letter => (
+            <div className="letter-card">
+                <div className="card-top">
+                    <div className="card-author">
+                        <img className="pic" src={letter.picture} />
+                        <div className="name">{letter.first_name} {letter.last_name}</div>
+                    </div>
+                    <div className="card-details-container">
+                        <div className="card-details">
+                            <div className="card-title">{letter.title}</div>
+                            <div className="addressee">Addressed To {letter.addressed_to}</div>
+                        </div>
+                        <div className="card-description">
+                            {letter.description}
+                        </div>
+                    </div>
                 </div>
-                <div className="card-details-container">
-                    <div className="card-details">
-                        <div className="card-title">Title Will Go Here</div>
-                        <div className="addressee">Addressed To This Person</div>
-                    </div>
-                    <div className="card-description">
-                        This will be the description of the letter. Where the 
-                        auther will be able to summarize the main points that he 
-                        wants to make about his letter.
-                    </div>
+                <div className="card-bottom">
+                    <span className="cosigns">Cosign {letter.cosigns}</span>
+                    <span className="card-responses">Responses 300</span>
+                    <span className="card-edit">Edit</span>                
+                    <span className="card-delete">Delete</span>
                 </div>
             </div>
-            <div className="card-bottom">
-                <span className="cosigns">Cosigns 459</span>
-                <span className="card-responses">Responses 300</span>
-                <span className="card-edit">Edit</span>                
-                <span className="card-delete">Delete</span>
+
+        ));
+        return(
+            <div>
+                {letters}
             </div>
-        </div>
-    )
+        )
+    }
 }
+
+function mapStateToProps(state){
+    return { myLetters: state.myLetters };
+};
+
+export default connect(mapStateToProps, { fetchMyLetters })(MyLetterCard);
+

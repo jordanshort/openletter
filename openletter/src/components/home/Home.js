@@ -4,7 +4,7 @@ import './Home.css';
 import { Link } from 'react-router-dom';
 import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
-import { authenticated } from '../../redux/reducer';
+import { authenticated, fetchMyLetters } from '../../redux/reducer';
 
 class Home extends Component{
 
@@ -13,6 +13,7 @@ class Home extends Component{
         if (!user){
             authenticated(history);
         }
+
     }
 
     render(){
@@ -53,4 +54,4 @@ function mapStateToProps(state){
     return{user: state.user};
 };
 
-export default connect(mapStateToProps, { authenticated })(Home);
+export default connect(mapStateToProps, { authenticated, fetchMyLetters })(Home);

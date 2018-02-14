@@ -13,14 +13,14 @@ class Home extends Component{
         // if (!user){
         //     authenticated(history);
         // }
-        this.props.fetchMyLetters();
+        // this.props.fetchMyLetters();
     }
 
     render(){
-        // if (!this.props.user){ return null}
-        const letters = !this.props.letters ? null : this.props.letters.map( letter => {
-            return <MyLetterCard  letter={letter}/>
-        })
+        // if (!this.props.myletters){ return null}
+        // const letters = this.props.letters.map( letter => {
+        //     return <MyLetterCard  letter={letter}/>
+        // })
         return(
             <div className="myletters-root">
                 <Header />
@@ -39,10 +39,15 @@ class Home extends Component{
                     <div className="myletters-scroll-container">
                         <div className="my-letters">
                             <h1>My Letters</h1>
-                            {letters}
                             <MyLetterCard />
-                            <MyLetterCard />
-                            <MyLetterCard />
+                            {/* { this.props.myLetters
+                                ?
+                                this.props.myletters.map(letter => (
+                                    <MyLetterCard key={letter.letter_id} letter={letter} />
+                                ))
+                                :
+                                <h2>No letters to display...go write a letter!</h2>
+                            } */}
                         </div>
                     </div>
                 </div>
@@ -54,7 +59,7 @@ class Home extends Component{
 function mapStateToProps(state){
     return{
         user: state.user,
-        myLetters: state.myLetters
+        // myLetters: state.myLetters
     };
 };
 
