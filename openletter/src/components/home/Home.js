@@ -10,7 +10,7 @@ class Home extends Component{
 
     componentDidMount(){
         let { user, authenticated, history } = this.props;
-        if (!user){
+        if (!user.id){
             authenticated(history);
         }
 

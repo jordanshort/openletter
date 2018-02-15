@@ -32,5 +32,22 @@ module.exports = {
         req.app.get('db').getUserLetters([id]).then(resp => {
             res.status(200).send(resp)
         })
+    },
+
+    editLetter: function(req, res){
+        let { id } = req.params;
+        let update = [
+            req.body.title,
+            req.body.description,
+            req.body.addressedTo,
+            req.body.text,
+            req.params.id
+        ]
+        req.app.get('db').editLetter(update).then(resp => {
+            req.app.get('db').getThisLetter([resp[0].id]).then( letters => {
+                res.status(200).send(letters[0])
+            })
+        });
     }
+
 }

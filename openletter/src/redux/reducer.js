@@ -10,7 +10,7 @@ const initialState = {
     followingLetters: [],
     selectedLetter: {content: '<p>Letter</p>'},
     authorLetters: [],
-    author: {first_name: 'first_name', last_name: 'last_name'}
+    author: {first_name: 'first_name', last_name: 'last_name'},
 }
 
 const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
@@ -20,6 +20,8 @@ const FETCH_THIS_LETTER = 'FETCH_THIS_LETTER';
 const FETCH_AUTHOR_LETTERS = 'FETCH_AUTHOR_LETTERS';
 const FETCH_AUTHOR = 'FETCH_AUTHOR';
 const FETCH_USER = 'FETCH_USER';
+const UPDATE_PROFILE = 'UPDATE_PROFILE';
+const EDIT_LETTER = 'EDIT_LETTER';
 
 
 //reducer
@@ -38,6 +40,10 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {author: payload});
         case FETCH_USER + '_FULFILLED':
             return Object.assign({}, state, {user: payload});
+        case UPDATE_PROFILE + '_FULFILLED':
+            return Object.assign({}, state, {user: payload});
+        case EDIT_LETTER + '_FULFILLED':
+            return Object.assign({}, state, {selectedLetter: payload});
         default: 
             return state;
     };
@@ -111,7 +117,26 @@ export function fetchAuthor(id){
 export function fetchUser(){
     let promise = axios.get('/user').then(resp => resp.data);
     return{
-        type:FETCH_USER,
+        type: FETCH_USER,
+        payload: promise
+    };
+};
+
+export function updateProfile(update){
+    let promise = axios.put('/user', update).then(resp => resp.data);
+    return{
+        type: UPDATE_PROFILE,
+        payload: promise
+    };
+};
+
+export function editLetter(id, update, history){
+    let promise = axios.put(`/letters/${id}`, update).then( resp => {
+        history.push(`/letter/${id}`);        
+        return resp.data;
+    });
+    return{
+        type: EDIT_LETTER,
         payload: promise
     };
 };

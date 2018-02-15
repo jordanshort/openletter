@@ -3,8 +3,9 @@ import Header from '../header/Header';
 import './Profile.css';
 import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
-import { fetchUser } from '../../redux/reducer';
+import { fetchUser, updateProfile } from '../../redux/reducer';
 import EditProfile from './EditProfile';
+import AuthorCard from '../authorCard/AuthorCard';
 
 class Profile extends Component{
     constructor(){
@@ -22,11 +23,24 @@ class Profile extends Component{
         this.handleShow = this.handleShow.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.getValidationState = this.getValidationState.bind(this);
+        // this.getValidationState = this.getValidationState.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
-        // this.props.fetchUser();
+        this.props.fetchUser();
+    }
+
+    componentWillReceiveProps(nextProps){
+        const { user } = nextProps;
+        this.setState({
+            month: user.birth_month,
+            day: user.birth_day,
+            year: user.birth_year,
+            about: user.about_me,
+            job: user.job,
+            employer: user.employer
+        });
     }
 
     handleClose(){
@@ -45,10 +59,23 @@ class Profile extends Component{
         this.setState({[name]: val});
     }
 
-    getValidationState(){
-        const length = this.state.year.length;
-        if (length === 4) return 'sucess';
-        else return 'error';
+    // getValidationState(){
+    //     const length = this.state.year.length;
+    //     if (length === 4) return 'sucess';
+    //     else return 'error';
+    // }
+
+    handleSubmit(){
+        let userUpdate = {
+          month: this.state.month,
+          day: this.state.day,
+          year: this.state.year,
+          about: this.state.about,
+          job: this.state.job,
+          employer: this.state.employer 
+        }
+        this.props.updateProfile(userUpdate);
+        this.handleClose();
     }
 
 
@@ -87,7 +114,11 @@ class Profile extends Component{
                                 : 'Add your employer'}
                             </div>
                         <button className="btn" onClick={this.handleShow}>Edit Profile</button>
+                        <div className="recommended-container">
+                            <AuthorCard />
+                        </div>
                     </div>
+                    
                     
                 </div>
                 <EditProfile 
@@ -99,7 +130,12 @@ class Profile extends Component{
                     year={this.state.year}
                     handleChange={this.handleChange}
                     getValidationState={this.getValidationState}
+                    about={this.state.about}
+                    job={this.state.job}
+                    employer={this.state.employer}
+                    handleSubmit={this.handleSubmit}
                     />
+                
             </div>
         )
     }
@@ -111,4 +147,4 @@ function mapStateToProps(state){
     };
 };
 
-export default connect(mapStateToProps, { fetchUser })(Profile);
+export default connect(mapStateToProps, { fetchUser, updateProfile })(Profile);

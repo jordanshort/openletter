@@ -7,12 +7,12 @@ import './EditProfile.css';
 export default function EditProfile(props){
     return(
         <div className="static-modal">
-            <Modal show={true}>
+            <Modal show={props.show}>
                 <Modal.Header>
                     <Modal.Title>Edit Your Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>Add A Profile Picture <i class="fas fa-camera fa-sm"></i> </div>
+                    <div>Add A Profile Picture <i className="fas fa-camera fa-sm"></i> </div>
                     <div className="birthday">
                         <ButtonToolbar>
                             <DropdownButton bsSize="small" title={ props.month || "Month"} id="month" onSelect={(val) => props.handleSelect('month', val)}>
@@ -62,7 +62,7 @@ export default function EditProfile(props){
                                 <MenuItem eventKey='30'>30</MenuItem>
                                 <MenuItem eventKey='31'>31</MenuItem>
                             </DropdownButton>
-                            <FormGroup validationState={props.getValidationState()}>
+                            <FormGroup >
                                 <FormControl bsSize="small" type="text" value={props.year} placeholder="Enter 4 digit Year ex: 1986" onChange={(e) => props.handleChange('year', e.target.value)} />
                             </FormGroup>
                         </ButtonToolbar>
@@ -81,7 +81,7 @@ export default function EditProfile(props){
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button>Save</Button>
+                    <Button onClick={props.handleSubmit}>Save</Button>
                     <Button bsStyle="danger" onClick={props.handleClose}>Cancel</Button>
                 </Modal.Footer>
             </Modal>

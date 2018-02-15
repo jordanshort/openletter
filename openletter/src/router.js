@@ -8,6 +8,7 @@ import Profile from './components/profile/Profile';
 import MyLetters from './components/myLetters/MyLetters';
 import Letter from './components/letter/Letter';
 import AuthorProfile from './components/authorProfile/AuthorProfile';
+import EditLetter from './components/editLetter/EditLetter';
 
 
 
@@ -19,6 +20,7 @@ export default (
         <Route path='/profile' component={Profile} />
         <Route path='/myletters' component={MyLetters} />
         <Route path='/letter/:id' component={Letter} />
+        <Route path='/editletter/:id' component={EditLetter} />
         <Route path='/' component={Login} />
     </Switch>
 )

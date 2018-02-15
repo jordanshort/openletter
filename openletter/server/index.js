@@ -69,7 +69,6 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 
 //authentication endpoints
 app.get('/auth/authenticated', (req, res) => {
-    console.log(req.user);
     if (!req.user){
         res.status(404).send('Please Login')
     } else {
@@ -90,9 +89,11 @@ app.get('/letters/mine', letterctrl.get);
 app.get('/letters/:id', letterctrl.getLetter);
 
 app.get('/authletters/:author', letterctrl.getAuthLetters);
+app.put('/letters/:id', letterctrl.editLetter);
 
 //user endpoints
 app.get('/user/:id', userctrl.getAuthor);
 app.get('/user', userctrl.getUser);
+app.put('/user', userctrl.updateProfile);
 
 app.listen(SERVER_PORT, () => console.log('Listening on port ' +SERVER_PORT));

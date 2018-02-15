@@ -19,6 +19,12 @@ class Home extends Component{
     render(){
         // if (!this.props.user){ return null}
         const { selectedLetter } = this.props;
+        const authorControls = this.props.user.id == this.props.selectedLetter.author_id ? 
+                <div className="letter-author-container">
+                    <button className="btn">Edit</button>
+                    <button className="btn">Delete</button>
+                </div>
+                : null;
         return(
             <div className="letter-root">
                 <Header />
@@ -36,9 +42,10 @@ class Home extends Component{
                             <button className="btn">Cosign</button>
                             <button className="btn">Respond</button>
                         </div>
+                        {authorControls}
                     </div>
                     <div className="letter-scroll-container">
-                       <span>{this.props.selectedLetter.title}Title</span> <br/>
+                       <span>{this.props.selectedLetter.title}</span> <br/>
                        <span>Addressed To {selectedLetter.addressed_to}</span> <br/>
                        {renderHTML(selectedLetter.content)}
                        {/* <div>{selectedLetter.content}</div> */}
