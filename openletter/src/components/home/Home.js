@@ -36,12 +36,7 @@ class Home extends Component{
                     <div className="home-scroll-container">
                         <div className="people-you-follow">
                             <h1>Home</h1>
-                            <LetterCard />
-                            <LetterCard />
-                            <LetterCard />
-                            <LetterCard />
-                            <LetterCard />
-                            <LetterCard />
+                            
                         </div>
                     </div>
                 </div>

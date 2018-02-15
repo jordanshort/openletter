@@ -93,5 +93,6 @@ app.get('/authletters/:author', letterctrl.getAuthLetters);
 
 //user endpoints
 app.get('/user/:id', userctrl.getAuthor);
+app.get('/user', userctrl.getUser);
 
 app.listen(SERVER_PORT, () => console.log('Listening on port ' +SERVER_PORT));

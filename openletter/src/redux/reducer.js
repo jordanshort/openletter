@@ -19,6 +19,7 @@ const FETCH_MY_LETTERS = 'FETCH_MY_LETTERS';
 const FETCH_THIS_LETTER = 'FETCH_THIS_LETTER';
 const FETCH_AUTHOR_LETTERS = 'FETCH_AUTHOR_LETTERS';
 const FETCH_AUTHOR = 'FETCH_AUTHOR';
+const FETCH_USER = 'FETCH_USER';
 
 
 //reducer
@@ -35,6 +36,8 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {authorLetters: payload});
         case FETCH_AUTHOR + '_FULFILLED':
             return Object.assign({}, state, {author: payload});
+        case FETCH_USER + '_FULFILLED':
+            return Object.assign({}, state, {user: payload});
         default: 
             return state;
     };
@@ -101,6 +104,14 @@ export function fetchAuthor(id){
     });
     return{
         type: FETCH_AUTHOR,
+        payload: promise
+    };
+};
+
+export function fetchUser(){
+    let promise = axios.get('/user').then(resp => resp.data);
+    return{
+        type:FETCH_USER,
         payload: promise
     };
 };
