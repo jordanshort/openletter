@@ -16,16 +16,17 @@
     font-family: 'Open Sans', sans-serif;
     margin-top: 20px;
     width: 750px;
-    height: 500px;
+    /* height: 500px; */
     background-color: #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1),
     0 1px 2px 0 rgba(0, 0, 0, .2);
     display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
-	align-content: stretch;
+    align-content: stretch;
+    padding-top: 25px;
 }
 
 .user-letters {
@@ -66,4 +67,22 @@
     width: 750px;
     margin-top: 50px;
 
+}
+
+.recommended-title {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.recommended-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 10px; 
+}
+
+.network {
+    margin-bottom: 20px;
+}
+.network span {
+    margin-right: 15px;
 }

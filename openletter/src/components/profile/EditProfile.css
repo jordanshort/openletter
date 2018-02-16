@@ -1,3 +1,58 @@
-.static-modal {
+.edit-modal {
     font-family: 'Open Sans', sans-serif;
+}
+
+.edit-modal-header {
+    font-weight: 700;
+}
+
+.edit-title {
+    margin-left: -15px;
+    margin-right: -15px;
+    height: 35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: #f2f2f2;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-end;
+    font-weight: 600;
+}
+
+.date-div {
+    margin-top: 15px;
+}
+
+.year-input {
+    width: 150px;
+    height: 29px;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, .3)
+}
+
+.day {
+    margin-right: 5px;
+}
+
+.edit-textarea {
+    width: 100%;
+    height: 70px;
+    font-size: 14px;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    word-wrap: normal;
+    border: none;
+    
+}
+
+.edit-input {
+    width: 100%;
+    font-size: 14px;
+    border: none;
+}
+
+.edit-input:focus, .edit-textarea {
+    outline: none;
 }

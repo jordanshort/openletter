@@ -81,7 +81,7 @@ class Profile extends Component{
 
     render(){
         // if (!this.props.user){return null};
-        const { user } = this.props;
+        const { user, following, followers } = this.props;
         return(
             <div className="user-profile-root">
                 <Header />
@@ -113,9 +113,23 @@ class Profile extends Component{
                                 `${user.employer}`
                                 : 'Add your employer'}
                             </div>
+                        <div className="network">
+                            <span>Following ({following.length})</span>
+                            <span>Followers ({followers.length})</span>
+                        </div>
                         <button className="btn" onClick={this.handleShow}>Edit Profile</button>
                         <div className="recommended-container">
-                            <AuthorCard />
+                            <div className="recommended-title">
+                            <span>Recommended Authors To Follow</span>
+                            </div>
+                            <div className="recommended-wrapper">
+                                <AuthorCard />
+                                <AuthorCard />
+                                <AuthorCard />
+                                <AuthorCard />
+                                <AuthorCard />
+                                <AuthorCard />
+                            </div> 
                         </div>
                     </div>
                     
@@ -143,7 +157,9 @@ class Profile extends Component{
 
 function mapStateToProps(state){
     return {
-        user: state.user
+        user: state.user, 
+        following: state.following,
+        followers: state.followers
     };
 };
 

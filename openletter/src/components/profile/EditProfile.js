@@ -7,14 +7,18 @@ import './EditProfile.css';
 export default function EditProfile(props){
     return(
         <div className="static-modal">
-            <Modal show={props.show}>
-                <Modal.Header>
+            <Modal className = "edit-modal" show={true}>
+                <Modal.Header className="edit-modal-header">
                     <Modal.Title>Edit Your Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>Add A Profile Picture <i className="fas fa-camera fa-sm"></i> </div>
                     <div className="birthday">
-                        <ButtonToolbar>
+                        <div className="edit-title">
+                            Edit Your Birthday
+                        </div>
+
+                        <ButtonToolbar className="date-div">
                             <DropdownButton bsSize="small" title={ props.month || "Month"} id="month" onSelect={(val) => props.handleSelect('month', val)}>
                                 <MenuItem eventKey='January'>January</MenuItem>
                                 <MenuItem eventKey='February'>February</MenuItem>
@@ -29,7 +33,7 @@ export default function EditProfile(props){
                                 <MenuItem eventKey='November'>November</MenuItem>
                                 <MenuItem eventKey='December'>December</MenuItem>
                             </DropdownButton>
-                            <DropdownButton bsSize="small" title={ props.day || "Day" } id="day" onSelect={(val) => props.handleSelect('day', val)}>
+                            <DropdownButton className="day" bsSize="small" title={ props.day || "Day" } id="day" onSelect={(val) => props.handleSelect('day', val)}>
                                 <MenuItem eventKey='1'>1</MenuItem>
                                 <MenuItem eventKey='2'>2</MenuItem>
                                 <MenuItem eventKey='3'>3</MenuItem>
@@ -63,20 +67,27 @@ export default function EditProfile(props){
                                 <MenuItem eventKey='31'>31</MenuItem>
                             </DropdownButton>
                             <FormGroup >
-                                <FormControl bsSize="small" type="text" value={props.year} placeholder="Enter 4 digit Year ex: 1986" onChange={(e) => props.handleChange('year', e.target.value)} />
+                                <FormControl className="year-input" bsSize="small" type="text" value={props.year} placeholder="Enter 4 digit Year ex: 1986" onChange={(e) => props.handleChange('year', e.target.value)} />
                             </FormGroup>
                         </ButtonToolbar>
+                        
                         <div>
-                            Add A Summary About You
-                            <input className="about-input" type="text"  value={props.about} onChange={(e) => props.handleChange('about', e.target.value)}/>
+                            <div className="edit-title">
+                                Add A Summary About You
+                            </div>
+                            <textarea placeholder="Add Summary here" className="edit-textarea" type="text"  value={props.about} onChange={(e) => props.handleChange('about', e.target.value)}/>
                         </div>
                         <div>
-                            Add Your Job Title 
-                            <input className="job-input" type="text"  value={props.job} onChange={(e) => props.handleChange('job', e.target.value)}/>                            
+                            <div className="edit-title">                            
+                                Add Your Job Title 
+                            </div>
+                            <input placeholder="Add Job Title here" className="edit-input" type="text"  value={props.job} onChange={(e) => props.handleChange('job', e.target.value)}/>                            
                         </div>
                         <div>
-                            Add Your Employer 
-                            <input className="employer-input" type="text"  value={props.employer} onChange={(e) => props.handleChange('employer', e.target.value)}/>                            
+                            <div className="edit-title">                            
+                                Add Your Employer 
+                            </div>
+                            <input placeholder="Add Employer here" className="edit-input" type="text"  value={props.employer} onChange={(e) => props.handleChange('employer', e.target.value)}/>                            
                         </div>
                     </div>
                 </Modal.Body>
