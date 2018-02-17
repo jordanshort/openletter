@@ -48,6 +48,15 @@ module.exports = {
                 res.status(200).send(letters[0])
             })
         });
+    },
+
+    delete: function(req, res){
+        let id = Number(req.params.id);
+        req.app.get('db').deleteLetter([id]).then( () => {
+            req.app.get('db').getUserLetters([req.user.id]).then( resp => {
+                res.status(200).send(resp);
+            });
+        });
     }
 
 }

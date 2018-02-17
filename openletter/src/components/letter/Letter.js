@@ -3,7 +3,7 @@ import Header from '../header/Header';
 import './Letter.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { authenticated, fetchThisLetter } from '../../redux/reducer';
+import { authenticated, fetchThisLetter, handleDelete } from '../../redux/reducer';
 import renderHTML from 'react-render-html';
 import '../../fontawesome-all';
 
@@ -19,11 +19,11 @@ class Home extends Component{
 
     render(){
         // if (!this.props.user){ return null}
-        const { selectedLetter, match, following } = this.props;
+        const { selectedLetter, match, following, handleDelete, history } = this.props;
         const authorControls = this.props.user.id == this.props.selectedLetter.author_id ? 
                 <div className="letter-author-container">
-                    <button className="btn">Edit</button>
-                    <button className="btn">Delete</button>
+                    <Link to={`/editletter/${selectedLetter.letter_id}`}><button className="btn">Edit</button></Link>
+                    <button onClick={() => handleDelete(selectedLetter.letter_id, history)} className="btn">Delete</button>
                 </div>
                 : null;
         return(
@@ -71,4 +71,4 @@ function mapStateToProps(state){
     };
 };
 
-export default connect(mapStateToProps, { authenticated, fetchThisLetter })(Home);
+export default connect(mapStateToProps, { authenticated, fetchThisLetter, handleDelete })(Home);

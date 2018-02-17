@@ -39,7 +39,7 @@ class Home extends Component{
                     <div className="myletters-scroll-container">
                         <div className="my-letters">
                             <h1>My Letters</h1>
-                            <MyLetterCard />
+                            <MyLetterCard history={this.props.history}/>
                             {/* { this.props.myLetters
                                 ?
                                 this.props.myletters.map(letter => (

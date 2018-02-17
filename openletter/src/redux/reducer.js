@@ -24,6 +24,7 @@ const UPDATE_PROFILE = 'UPDATE_PROFILE';
 const EDIT_LETTER = 'EDIT_LETTER';
 const GET_FOLLOWERS = 'GET_FOLLOWERS';
 const GET_FOLLOWING = 'GET_FOLLOWING';
+const DELETE_LETTER = 'DELETE_LETTER';
 
 
 //reducer
@@ -50,6 +51,8 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {following: payload});
         case GET_FOLLOWERS + '_FULFILLED':
             return Object.assign({}, state, {followers: payload});
+        case DELETE_LETTER + '_FULFILLED':
+            return Object.assign({}, state, {myLetters: payload});
         default: 
             return state;
     };
@@ -71,8 +74,8 @@ export function authenticated(history){
 
 export function postLetter(letter, history){
     let promise = axios.post('/letters/new', letter).then( resp => {
+        history.push('/myletters');        
         return resp.data;
-        history.push('/myletters');
     }).catch( err => history.push('/'));
 
     return{
@@ -163,4 +166,15 @@ export function getFollowers(){
         type: GET_FOLLOWERS,
         payload: promise
     };
+};
+
+export function handleDelete(id, history){
+    let promise = axios.delete(`/letters/${id}`).then(resp => {
+    history.push('/myletters');
+    return resp.data;
+    });
+    return{
+        type: DELETE_LETTER,
+        payload: promise
+    };    
 };

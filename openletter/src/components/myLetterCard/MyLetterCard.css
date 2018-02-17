@@ -111,6 +111,10 @@
     left: 350px;
 }
 
+.card-delete:hover {
+    cursor: pointer;
+}
+
 
 
 
