@@ -7,7 +7,7 @@ import './EditProfile.css';
 export default function EditProfile(props){
     return(
         <div className="static-modal">
-            <Modal className = "edit-modal" show={true}>
+            <Modal className = "edit-modal" show={props.show}>
                 <Modal.Header className="edit-modal-header">
                     <Modal.Title>Edit Your Profile</Modal.Title>
                 </Modal.Header>

@@ -39,7 +39,6 @@
 .user-profile-picture {
     width: 150px;
     height: 150px;
-    border: 1px solid green;
     margin-bottom: 15px;
 }
 
@@ -75,9 +74,12 @@
 }
 
 .recommended-wrapper {
+    width: 100%;
+    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-gap: 10px; 
+    justify-items: center;
 }
 
 .network {

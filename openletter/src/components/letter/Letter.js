@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authenticated, fetchThisLetter } from '../../redux/reducer';
 import renderHTML from 'react-render-html';
+import '../../fontawesome-all';
 
 class Home extends Component{
 
@@ -18,7 +19,7 @@ class Home extends Component{
 
     render(){
         // if (!this.props.user){ return null}
-        const { selectedLetter } = this.props;
+        const { selectedLetter, match, following } = this.props;
         const authorControls = this.props.user.id == this.props.selectedLetter.author_id ? 
                 <div className="letter-author-container">
                     <button className="btn">Edit</button>
@@ -36,7 +37,13 @@ class Home extends Component{
                             <Link to={`/profile/${selectedLetter.author_id}`}>
                             <div>{selectedLetter.first_name} {selectedLetter.last_name}</div>
                             </Link>
-                            <button className=" letter-follow">Follow</button>
+                            {following.findIndex((author) => {
+                                return author.id == match.params.id;
+                                }) === -1 ? 
+                                <button className=" letter-follow">Follow</button>
+                                :
+                                <button className=" letter-follow">Following <i className="fas fa-check fa-xs"></i></button>
+                            }
                         </div>
                         <div className="letter-author-container">
                             <button className="btn">Cosign</button>
@@ -59,7 +66,8 @@ class Home extends Component{
 function mapStateToProps(state){
     return{
         user: state.user,
-        selectedLetter: state.selectedLetter
+        selectedLetter: state.selectedLetter,
+        following: state.following
     };
 };
 

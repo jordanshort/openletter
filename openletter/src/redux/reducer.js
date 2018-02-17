@@ -22,6 +22,8 @@ const FETCH_AUTHOR = 'FETCH_AUTHOR';
 const FETCH_USER = 'FETCH_USER';
 const UPDATE_PROFILE = 'UPDATE_PROFILE';
 const EDIT_LETTER = 'EDIT_LETTER';
+const GET_FOLLOWERS = 'GET_FOLLOWERS';
+const GET_FOLLOWING = 'GET_FOLLOWING';
 
 
 //reducer
@@ -44,6 +46,10 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {user: payload});
         case EDIT_LETTER + '_FULFILLED':
             return Object.assign({}, state, {selectedLetter: payload});
+        case GET_FOLLOWING + '_FULFILLED':
+            return Object.assign({}, state, {following: payload});
+        case GET_FOLLOWERS + '_FULFILLED':
+            return Object.assign({}, state, {followers: payload});
         default: 
             return state;
     };
@@ -52,7 +58,9 @@ export default function reducer(state = initialState, action){
 //action creators
 export function authenticated(history){
     let promise = axios.get('/auth/authenticated').then( resp => {
-            return resp.data
+        getFollowing();
+        getFollowers();
+        return resp.data;
     }).catch(err => history.push('/'));
 
     return{
@@ -137,6 +145,22 @@ export function editLetter(id, update, history){
     });
     return{
         type: EDIT_LETTER,
+        payload: promise
+    };
+};
+
+export function getFollowing(){
+    let promise = axios.get('/following').then(resp => resp.data);
+    return{
+        type: GET_FOLLOWING,
+        payload: promise
+    };
+};
+
+export function getFollowers(){
+    let promise = axios.get('/followers').then(resp => resp.data);
+    return{
+        type: GET_FOLLOWERS,
         payload: promise
     };
 };

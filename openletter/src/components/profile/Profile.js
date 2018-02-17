@@ -129,6 +129,12 @@ class Profile extends Component{
                                 <AuthorCard />
                                 <AuthorCard />
                                 <AuthorCard />
+                                <AuthorCard />
+                                <AuthorCard />
+                                <AuthorCard />
+                                <AuthorCard />
+                                <AuthorCard />
+                                <AuthorCard />
                             </div> 
                         </div>
                     </div>

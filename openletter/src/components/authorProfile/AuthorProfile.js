@@ -4,6 +4,7 @@ import './AuthorProfile.css';
 import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
 import { fetchAuthor } from '../../redux/reducer';
+import '../../fontawesome-all';
 
 class AuthorProfile extends Component{
 
@@ -16,7 +17,7 @@ class AuthorProfile extends Component{
 
     render(){
         
-        const { author } = this.props;
+        const { author, following, match } = this.props;
         return(
             <div className="author-profile-root">
                 <Header />
@@ -30,7 +31,13 @@ class AuthorProfile extends Component{
                         <div className="author-profile-about">{author.about_me}</div>
                         <div className="author-profile-job">{author.job}</div>
                         <div className="author-profile-employer">{author.employer}</div>
-                        <button className="btn">Follow</button>
+                        { following.findIndex((author) => {
+                            return author.id == match.params.id;
+                        }) === -1 ? 
+                            <button className="btn">Follow</button>
+                            :
+                            <button className="btn">Following<i className="fas fa-check fa-xs"></i></button>
+                            }
                     </div>
                     
                     <div className="author-letters">
@@ -45,7 +52,8 @@ class AuthorProfile extends Component{
 
 function mapStateToProps(state){
     return {
-        author: state.author
+        author: state.author,
+        following: state.following
     };
 };
 

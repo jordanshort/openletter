@@ -5,7 +5,8 @@ const express = require('express')
     , massive = require('massive')
     , bodyParser = require('body-parser')
     , letterctrl = require('./letterController')
-    , userctrl = require('./userController');
+    , userctrl = require('./userController')
+    , networkctrl = require('./networkController');
 const app = express();
 require('dotenv').config();
 app.use(bodyParser.json());
@@ -95,5 +96,7 @@ app.put('/letters/:id', letterctrl.editLetter);
 app.get('/user/:id', userctrl.getAuthor);
 app.get('/user', userctrl.getUser);
 app.put('/user', userctrl.updateProfile);
+app.get('/following', networkctrl.getFollowing);
+app.get('/followers', networkctrl.getFollowers);
 
 app.listen(SERVER_PORT, () => console.log('Listening on port ' +SERVER_PORT));
