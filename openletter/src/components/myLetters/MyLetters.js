@@ -25,7 +25,7 @@ class Home extends Component{
             <div className="myletters-root">
                 <Header />
                 <div className="myletters-body-container">
-                    <div className="side-menu">
+                    <div className="myletters-side-menu">
                         <div className="myletters-btn-container" >
                             <Link to="/newpost"><button className="btn">Compose Letter</button></Link>
                         </div>

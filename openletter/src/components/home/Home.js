@@ -5,24 +5,29 @@ import { Link } from 'react-router-dom';
 import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
 import { authenticated, fetchMyLetters } from '../../redux/reducer';
+// import { socketConnect } from 'socket.io-react';
+// import socketIOClient from 'socket.io-client';
+// const socket = socketIOClient('http://localhost:4050');
 
 class Home extends Component{
 
     componentDidMount(){
-        let { user, authenticated, history } = this.props;
+        let { user, authenticated, history,  } = this.props;
         if (!user.id){
             authenticated(history);
         }
-
     }
+
 
     render(){
         if (!this.props.user){ return null}
         return(
-            <div className="home-root">
-                <Header />
+            <div className="home-root-container">
+                
+                    <Header />
+                
                 <div className="home-body-container">
-                    <div className="side-menu">
+                    <div className="home-side-menu">
                         <div className="home-btn-container" >
                             <Link to="/newpost"><button className="btn">Compose Letter</button></Link>
                         </div>

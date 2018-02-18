@@ -3,23 +3,35 @@ import Header from '../header/Header';
 import './Letter.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { authenticated, fetchThisLetter, handleDelete } from '../../redux/reducer';
+import { authenticated, fetchThisLetter, handleDelete, handleCosign } from '../../redux/reducer';
 import renderHTML from 'react-render-html';
 import '../../fontawesome-all';
+// import { socketConnect } from 'socket.io-react';
 
 class Home extends Component{
 
     componentDidMount(){
+        let { socket } = this.props;
         // let { user, authenticated, history } = this.props;
         // if (!user){
         //     authenticated(history);
         // }
         this.props.fetchThisLetter(this.props.match.params.id);
+
+        // socket.on('cosign', function(data){
+        //     console.log(data);
+        // });
     }
+
+    // handleCosign(){
+    //     let {user, selectedLetter, socket} = this.props;
+    //     socket.emit('cosign', {userId: user.id, letterId: selectedLetter.letter_id})
+    // }
+
 
     render(){
         // if (!this.props.user){ return null}
-        const { selectedLetter, match, following, handleDelete, history } = this.props;
+        const { selectedLetter, match, following, handleDelete, history, handleCosign, socket, user } = this.props;
         const authorControls = this.props.user.id == this.props.selectedLetter.author_id ? 
                 <div className="letter-author-container">
                     <Link to={`/editletter/${selectedLetter.letter_id}`}><button className="btn">Edit</button></Link>
@@ -38,7 +50,7 @@ class Home extends Component{
                             <div>{selectedLetter.first_name} {selectedLetter.last_name}</div>
                             </Link>
                             {following.findIndex((author) => {
-                                return author.id == match.params.id;
+                                return author.id == selectedLetter.author_id;
                                 }) === -1 ? 
                                 <button className=" letter-follow">Follow</button>
                                 :
@@ -46,7 +58,7 @@ class Home extends Component{
                             }
                         </div>
                         <div className="letter-author-container">
-                            <button className="btn">Cosign</button>
+                            <button onClick={() => handleCosign({userId: user.id, letterId: selectedLetter.letter_id}, socket)}className="btn">Cosign</button>
                             <button className="btn">Respond</button>
                         </div>
                         {authorControls}
@@ -55,7 +67,6 @@ class Home extends Component{
                        <span>{this.props.selectedLetter.title}</span> <br/>
                        <span>Addressed To {selectedLetter.addressed_to}</span> <br/>
                        {renderHTML(selectedLetter.content)}
-                       {/* <div>{selectedLetter.content}</div> */}
                     </div>
                 </div>
             </div>
@@ -71,4 +82,4 @@ function mapStateToProps(state){
     };
 };
 
-export default connect(mapStateToProps, { authenticated, fetchThisLetter, handleDelete })(Home);
+export default connect(mapStateToProps, { authenticated, fetchThisLetter, handleDelete, handleCosign })(Home);

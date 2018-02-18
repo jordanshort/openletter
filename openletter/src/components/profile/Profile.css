@@ -2,6 +2,7 @@
 
 .user-profile-root {
     width: 100vw;
+    height: 100vh;
     display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -11,6 +12,7 @@
     background: #f2f2f2;
     margin-top: 60px;
 }
+
 
 .user-profile-card {
     font-family: 'Open Sans', sans-serif;
@@ -49,6 +51,10 @@
 }
 
 .user-profile-birthday {
+    margin-bottom: 20px;
+}
+
+.user-profile-about {
     margin-bottom: 20px;
 }
 

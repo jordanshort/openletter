@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Header.css';
 import '../../fontawesome-all';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Header extends Component{
     constructor(){
@@ -20,6 +21,7 @@ class Header extends Component{
         return(
             <div className="header">
                 <div className="header-logo">OpenLetter</div>
+                <div>Notifications({this.props.notifications.length})</div>
                     <form className="input-group">
                         <input 
                         placeholder="Search"
@@ -44,5 +46,11 @@ class Header extends Component{
     }
 }
 
-export default Header;
+function mapStateToProps(state){
+    return{
+        notifications: state.notifications
+    };
+};
+
+export default connect(mapStateToProps)(Header);
 

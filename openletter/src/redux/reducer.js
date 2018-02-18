@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const initialState = {
     user: {},
-    following: [],
-    followers: [],
+    following: [{id: 2, first_name: 'Bill', last_name: 'Nye', picture: 'http://robohash.org/bill'}, {id: 4, first_name: 'Donovan', last_name: 'Mitchell', picture: 'http://robohash.org/donovan'}],
+    followers: [{id: 10, first_name: 'Tiger', last_name: 'Woods', picture: 'http://robohash.org/eldrick'}, {id: 20, first_name: 'Jordan', last_name: 'Spieth', picture: 'http://robohash.org/jordan'}, {id: 22, first_name: 'Rudy', last_name: 'Gobert', picture: 'http://robohash.org/Rudy'}],
     myLetters: [],
     topTen: [],
     recommended: [],
@@ -11,6 +11,7 @@ const initialState = {
     selectedLetter: {content: '<p>Letter</p>'},
     authorLetters: [],
     author: {first_name: 'first_name', last_name: 'last_name'},
+    notifications: [],
 }
 
 const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
@@ -25,6 +26,7 @@ const EDIT_LETTER = 'EDIT_LETTER';
 const GET_FOLLOWERS = 'GET_FOLLOWERS';
 const GET_FOLLOWING = 'GET_FOLLOWING';
 const DELETE_LETTER = 'DELETE_LETTER';
+const ADD_NOTIFICATIONS = 'ADD_NOTIFICATIONS';
 
 
 //reducer
@@ -177,4 +179,12 @@ export function handleDelete(id, history){
         type: DELETE_LETTER,
         payload: promise
     };    
+};
+
+export function handleCosign(body, socket){
+    socket.emit('cosign', body);
+    return{
+        type: ADD_NOTIFICATIONS,
+        payload: body
+    };
 };

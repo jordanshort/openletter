@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchUser, updateProfile } from '../../redux/reducer';
 import EditProfile from './EditProfile';
 import AuthorCard from '../authorCard/AuthorCard';
+import { Link } from 'react-router-dom';
 
 class Profile extends Component{
     constructor(){
@@ -114,8 +115,10 @@ class Profile extends Component{
                                 : 'Add your employer'}
                             </div>
                         <div className="network">
+                            <Link to={`/network/${user.id}`} >
                             <span>Following ({following.length})</span>
                             <span>Followers ({followers.length})</span>
+                            </Link>
                         </div>
                         <button className="btn" onClick={this.handleShow}>Edit Profile</button>
                         <div className="recommended-container">
@@ -123,18 +126,7 @@ class Profile extends Component{
                             <span>Recommended Authors To Follow</span>
                             </div>
                             <div className="recommended-wrapper">
-                                <AuthorCard />
-                                <AuthorCard />
-                                <AuthorCard />
-                                <AuthorCard />
-                                <AuthorCard />
-                                <AuthorCard />
-                                <AuthorCard />
-                                <AuthorCard />
-                                <AuthorCard />
-                                <AuthorCard />
-                                <AuthorCard />
-                                <AuthorCard />
+                                
                             </div> 
                         </div>
                     </div>

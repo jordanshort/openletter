@@ -10,11 +10,18 @@
     0 1px 2px 0 rgba(0, 0, 0, .2);
     position: relative;
     font-family: 'Open Sans', sans-serif;
+    margin-bottom: 10px;
 }
 
 .author-card-picture {
     width: 80px;
     height: 80px;
+}
+
+#auth-pic {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
 }
 
 .author-card-names {

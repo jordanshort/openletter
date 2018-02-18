@@ -9,6 +9,7 @@ import MyLetters from './components/myLetters/MyLetters';
 import Letter from './components/letter/Letter';
 import AuthorProfile from './components/authorProfile/AuthorProfile';
 import EditLetter from './components/editLetter/EditLetter';
+import Network from './components/network/Network';
 
 
 
@@ -21,6 +22,7 @@ export default (
         <Route path='/myletters' component={MyLetters} />
         <Route path='/letter/:id' component={Letter} />
         <Route path='/editletter/:id' component={EditLetter} />
+        <Route path='/network/:id' component={Network} />
         <Route path='/' component={Login} />
     </Switch>
 )

@@ -6,15 +6,20 @@ const express = require('express')
     , bodyParser = require('body-parser')
     , letterctrl = require('./letterController')
     , userctrl = require('./userController')
-    , networkctrl = require('./networkController');
+    , networkctrl = require('./networkController')
+    , socket_io = require('socket.io')
+    , http = require('http');
 const app = express();
 require('dotenv').config();
 app.use(bodyParser.json());
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+const server = http.createServer(app)
+    , io = socket_io(server);
 
 massive(CONNECTION_STRING).then( db => {
     app.set('db', db);
 });
+
 
 
 app.use(session({
@@ -22,6 +27,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -100,4 +107,26 @@ app.put('/user', userctrl.updateProfile);
 app.get('/following', networkctrl.getFollowing);
 app.get('/followers', networkctrl.getFollowers);
 
-app.listen(SERVER_PORT, () => console.log('Listening on port ' +SERVER_PORT));
+let users = {};
+io.on('connection', function(socket){
+    socket.emit('who are you');
+    socket.on('check in', function (incoming) {
+        users[incoming.id] = socket.id;
+        console.log(users);
+    });
+
+    socket.on('cosign', function(data){
+        app.get('db').letterCosign([data.userId, data.letterId]).then(resp => {
+            io.sockets.emit('cosign', resp)
+        })
+    });
+    
+    socket.on('test', function(data){
+        console.log(socket.id)
+    })
+    
+
+
+})
+
+server.listen(SERVER_PORT, () => console.log('Listening on port ' +SERVER_PORT));
