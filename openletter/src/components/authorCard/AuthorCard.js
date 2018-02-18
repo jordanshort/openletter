@@ -1,9 +1,11 @@
 import React from 'react';
 import './AuthorCard.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { followAuthor } from '../../redux/reducer';
 
-export default function AuthorCard(props){
-    const { author } = props;
+function AuthorCard(props){
+    const { author, following, followAuthor } = props;
     return(
         <div className="recommended-author-card">
             <div className="author-card-picture">
@@ -15,7 +17,21 @@ export default function AuthorCard(props){
                     <span className="author-card-first">{author.last_name}</span>
                 </Link>
             </div>
-            <button>Follow</button>
+            {following.findIndex(elem => {
+                return elem.id == author.id
+            }) === -1 ? 
+            <button onClick={() => followAuthor(author.id)}>Follow</button>  
+            :
+            <button>Following</button>  
+            }
         </div>
     )
 }
+
+function mapStateToProps(state){
+    return{
+        following: state.following
+    };
+};
+
+export default connect(mapStateToProps, { followAuthor })(AuthorCard);

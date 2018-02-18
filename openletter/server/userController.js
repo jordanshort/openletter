@@ -13,7 +13,6 @@ module.exports = {
     },
 
     updateProfile: function(req, res){
-        
         let update = [ 
            req.body.month,
            req.body.day,
@@ -25,6 +24,24 @@ module.exports = {
         ];
         req.app.get('db').updateUser(update).then(resp => {
             res.status(200).send(resp[0]);
+        });
+    },
+
+    getRecommended: function(req, res){
+        req.app.get('db').getRecommended([req.user.id]).then(resp => {
+            res.status(200).send(resp);
+        });
+    },
+
+    addFollowing: function(req, res){
+        let body = [
+            req.user.id,
+            req.body.id
+        ]
+        req.app.get('db').addFollowing(body).then(() => {
+            req.app.get('db').getRecommended([req.user.id]).then(resp => {
+                res.status(200).send(resp);
+            });
         });
     }
 

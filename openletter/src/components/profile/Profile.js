@@ -3,7 +3,7 @@ import Header from '../header/Header';
 import './Profile.css';
 import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
-import { fetchUser, updateProfile } from '../../redux/reducer';
+import { fetchUser, updateProfile, getRecommended } from '../../redux/reducer';
 import EditProfile from './EditProfile';
 import AuthorCard from '../authorCard/AuthorCard';
 import { Link } from 'react-router-dom';
@@ -30,6 +30,7 @@ class Profile extends Component{
 
     componentDidMount(){
         this.props.fetchUser();
+        this.props.getRecommended();
     }
 
     componentWillReceiveProps(nextProps){
@@ -82,7 +83,7 @@ class Profile extends Component{
 
     render(){
         // if (!this.props.user){return null};
-        const { user, following, followers } = this.props;
+        const { user, following, followers, recommended } = this.props;
         return(
             <div className="user-profile-root">
                 <Header />
@@ -126,7 +127,10 @@ class Profile extends Component{
                             <span>Recommended Authors To Follow</span>
                             </div>
                             <div className="recommended-wrapper">
-                                
+                                {!recommended.length ? null :
+                                    recommended.map(author => (
+                                        <AuthorCard author={author} />
+                                    ))}
                             </div> 
                         </div>
                     </div>
@@ -157,8 +161,9 @@ function mapStateToProps(state){
     return {
         user: state.user, 
         following: state.following,
-        followers: state.followers
+        followers: state.followers,
+        recommended: state.recommended
     };
 };
 
-export default connect(mapStateToProps, { fetchUser, updateProfile })(Profile);
+export default connect(mapStateToProps, { fetchUser, updateProfile, getRecommended })(Profile);
