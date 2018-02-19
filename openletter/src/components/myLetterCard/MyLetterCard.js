@@ -32,7 +32,7 @@ class MyLetterCard extends Component{
                     </div>
                 </div>
                 <div className="card-bottom">
-                    <span className="cosigns">Cosign {letter.cosigns}</span>
+                    <span className="cosigns">Cosign {letter.cosign_total}</span>
                     <span className="card-responses">Responses 300</span>
                     <Link to={`/editletter/${letter.letter_id}`}><span className="card-edit">Edit</span></Link>                
                     <span onClick={() => this.props.handleDelete(letter.letter_id, this.props.history)}className="card-delete">Delete</span>

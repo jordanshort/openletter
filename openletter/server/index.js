@@ -38,7 +38,6 @@ passport.use(new Auth0Strategy({
     clientID: 'LP55tMh6LiEd3QDXA5SwH8A97sqYl0yv', 
     clientSecret: 'yuY8CV9yMD0LTDCPQyVILrcFZmdWxs3wue1U-1ibEzfpJm8tpbXsS2xAq2YHdXuS',
     callbackURL: 'http://localhost:4050/auth/callback',
-    rememberLastLogin: false,
     scope: 'openid profile email'
 }, function(accessToken, refreshToken, extraParams, profile, done){
     // const picture = 'https://robohash.org/me';

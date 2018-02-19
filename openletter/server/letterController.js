@@ -14,8 +14,9 @@ module.exports = {
     },
 
     get: function(req, res){
-        let { id } = req.user;
-        req.app.get('db').getUserLetters([id]).then( resp => {
+        console.log(req.user.id);
+        // let { id } = req.user;
+        req.app.get('db').getUserLetters([req.user.id]).then( resp => {
             res.status(200).send(resp);
         })
     },
