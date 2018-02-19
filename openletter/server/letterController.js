@@ -14,7 +14,6 @@ module.exports = {
     },
 
     get: function(req, res){
-        console.log(req.user.id);
         // let { id } = req.user;
         req.app.get('db').getUserLetters([req.user.id]).then( resp => {
             res.status(200).send(resp);
@@ -57,6 +56,13 @@ module.exports = {
             req.app.get('db').getUserLetters([req.user.id]).then( resp => {
                 res.status(200).send(resp);
             });
+        });
+    },
+
+    getFollowingLetters: function(req, res){
+        console.log('Endpoint hit')
+        req.app.get('db').getFollowingLetters([req.user.id]).then(resp => {
+            res.status(200).send(resp);
         });
     }
 

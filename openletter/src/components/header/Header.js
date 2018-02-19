@@ -3,6 +3,7 @@ import './Header.css';
 import '../../fontawesome-all';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { getFollowers, getFollowing } from '../../redux/reducer';
 
 class Header extends Component{
     constructor(){
@@ -10,6 +11,11 @@ class Header extends Component{
         this.state = {
             term: ''
         }
+    }
+
+    componentDidMount(){
+        this.props.getFollowers();
+        this.props.getFollowing();
     }
 
     handleChange(val){
@@ -52,5 +58,5 @@ function mapStateToProps(state){
     };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { getFollowers, getFollowing })(Header);
 

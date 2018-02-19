@@ -3,7 +3,7 @@ import Header from '../header/Header';
 import './Letter.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { authenticated, fetchThisLetter, handleDelete, handleCosign } from '../../redux/reducer';
+import { authenticated, fetchThisLetter, handleDelete, handleCosign, followAuthor } from '../../redux/reducer';
 import renderHTML from 'react-render-html';
 import '../../fontawesome-all';
 // import { socketConnect } from 'socket.io-react';
@@ -52,7 +52,7 @@ class Home extends Component{
                             {following.findIndex((author) => {
                                 return author.id == selectedLetter.author_id;
                                 }) === -1 ? 
-                                <button className=" letter-follow">Follow</button>
+                                <button onClick={() => followAuthor(selectedLetter.author_id)} className=" letter-follow">Follow</button>
                                 :
                                 <button className=" letter-follow">Following <i className="fas fa-check fa-xs"></i></button>
                             }
@@ -82,4 +82,12 @@ function mapStateToProps(state){
     };
 };
 
-export default connect(mapStateToProps, { authenticated, fetchThisLetter, handleDelete, handleCosign })(Home);
+let actions = {
+    authenticated, 
+    fetchThisLetter, 
+    handleDelete, 
+    handleCosign, 
+    followAuthor
+}
+
+export default connect(mapStateToProps, actions)(Home);

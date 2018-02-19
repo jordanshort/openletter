@@ -3,21 +3,25 @@ import Header from '../header/Header';
 import './AuthorProfile.css';
 import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
-import { fetchAuthor } from '../../redux/reducer';
+import { fetchAuthor, followAuthor, fetchAuthorLetters } from '../../redux/reducer';
 import '../../fontawesome-all';
 
 class AuthorProfile extends Component{
 
     componentDidMount(){
         const { id } = this.props.match.params;
-        const { fetchAuthor } = this.props;
+        const { fetchAuthor, fetchAuthorLetters } = this.props;
         fetchAuthor(id);
+        fetchAuthorLetters(id);
     }
 
 
     render(){
         
-        const { author, following, match } = this.props;
+        const { author, following, match, followAuthor, authorLetters } = this.props;
+        const authLetters = !authorLetters.length ? null : authorLetters.map(letter => (
+            <LetterCard key={letter.letter_id} letter={letter}/>
+        ))
         return(
             <div className="author-profile-root">
                 <Header />
@@ -34,7 +38,7 @@ class AuthorProfile extends Component{
                         { following.findIndex((author) => {
                             return author.id == match.params.id;
                         }) === -1 ? 
-                            <button className="btn">Follow</button>
+                            <button onClick={() => followAuthor(author.id)} className="btn">Follow</button>
                             :
                             <button className="btn">Following<i className="fas fa-check fa-xs"></i></button>
                             }
@@ -42,7 +46,7 @@ class AuthorProfile extends Component{
                     
                     <div className="author-letters">
                         <span>Author's Letters</span>
-                        <LetterCard authId={this.props.match.params.id}/>
+                        {authLetters}
                     </div>
                 </div>
             </div>
@@ -53,8 +57,9 @@ class AuthorProfile extends Component{
 function mapStateToProps(state){
     return {
         author: state.author,
-        following: state.following
+        following: state.following,
+        authorLetters: state.authorLetters
     };
 };
 
-export default connect(mapStateToProps, { fetchAuthor })(AuthorProfile);
+export default connect(mapStateToProps, { fetchAuthor, followAuthor, fetchAuthorLetters })(AuthorProfile);

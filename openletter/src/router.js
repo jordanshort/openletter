@@ -10,6 +10,7 @@ import Letter from './components/letter/Letter';
 import AuthorProfile from './components/authorProfile/AuthorProfile';
 import EditLetter from './components/editLetter/EditLetter';
 import Network from './components/network/Network';
+import Response from './components/response/Response';
 
 
 
@@ -23,6 +24,7 @@ export default (
         <Route path='/letter/:id' component={Letter} />
         <Route path='/editletter/:id' component={EditLetter} />
         <Route path='/network/:id' component={Network} />
+        <Route path='/response/:letterid' component={Response} />
         <Route path='/' component={Login} />
     </Switch>
 )

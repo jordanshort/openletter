@@ -4,7 +4,7 @@ import './Home.css';
 import { Link } from 'react-router-dom';
 import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
-import { authenticated, fetchMyLetters } from '../../redux/reducer';
+import { authenticated, fetchFollowingLetters } from '../../redux/reducer';
 // import { socketConnect } from 'socket.io-react';
 // import socketIOClient from 'socket.io-client';
 // const socket = socketIOClient('http://localhost:4050');
@@ -12,15 +12,21 @@ import { authenticated, fetchMyLetters } from '../../redux/reducer';
 class Home extends Component{
 
     componentDidMount(){
-        let { user, authenticated, history,  } = this.props;
+        let { user, authenticated, history, fetchFollowingLetters  } = this.props;
         if (!user.id){
             authenticated(history);
         }
+
+        fetchFollowingLetters();
     }
 
 
     render(){
+        const { followingLetters } = this.props;
         if (!this.props.user){ return null}
+        const follLetters = !followingLetters.length ? null : followingLetters.map(letter => (
+            <LetterCard key={letter.letter_id} letter={letter} />
+        ))
         return(
             <div className="home-root-container">
                 
@@ -41,7 +47,7 @@ class Home extends Component{
                     <div className="home-scroll-container">
                         <div className="people-you-follow">
                             <h1>Home</h1>
-                            
+                            {follLetters}
                         </div>
                     </div>
                 </div>
@@ -51,7 +57,10 @@ class Home extends Component{
 }
 
 function mapStateToProps(state){
-    return{user: state.user};
+    return{
+        user: state.user,
+        followingLetters: state.followingLetters
+    };
 };
 
-export default connect(mapStateToProps, { authenticated, fetchMyLetters })(Home);
+export default connect(mapStateToProps, { authenticated, fetchFollowingLetters })(Home);

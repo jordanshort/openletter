@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const initialState = {
     user: {},
-    following: [{id: 50, first_name: 'Bill', last_name: 'Nye', picture: 'http://robohash.org/bill'}, {id: 51, first_name: 'Donovan', last_name: 'Mitchell', picture: 'http://robohash.org/donovan'}],
-    followers: [{id: 53, first_name: 'Tiger', last_name: 'Woods', picture: 'http://robohash.org/eldrick'}, {id: 20, first_name: 'Jordan', last_name: 'Spieth', picture: 'http://robohash.org/jordan'}, {id: 22, first_name: 'Rudy', last_name: 'Gobert', picture: 'http://robohash.org/Rudy'}],
+    following: [],
+    followers: [],
     myLetters: [],
     topTen: [],
     recommended: [],
@@ -28,6 +28,7 @@ const GET_FOLLOWING = 'GET_FOLLOWING';
 const DELETE_LETTER = 'DELETE_LETTER';
 const ADD_NOTIFICATIONS = 'ADD_NOTIFICATIONS';
 const GET_RECOMMENDED = 'GET_RECOMMENDED';
+const FETCH_FOLLOWING_LETTERS = 'FETCH_FOLLOWING_LETTERS';
 
 
 //reducer
@@ -58,6 +59,8 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {myLetters: payload});
         case GET_RECOMMENDED + '_FULFILLED':
             return Object.assign({}, state, {recommended: payload});
+        case FETCH_FOLLOWING_LETTERS + '_FULFILLED':
+            return Object.assign({}, state, {followingLetters: payload});
         default: 
             return state;
     };
@@ -204,6 +207,14 @@ export function followAuthor(authId){
     let promise = axios.post('/following/new', {id: authId}).then(resp => resp.data);
     return{
         type: GET_FOLLOWING,
+        payload: promise
+    };
+};
+
+export function fetchFollowingLetters(){
+    let promise = axios.get('/followingletters').then(resp => resp.data);
+    return{
+        type: FETCH_FOLLOWING_LETTERS,
         payload: promise
     };
 };

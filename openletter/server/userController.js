@@ -39,7 +39,7 @@ module.exports = {
             req.body.id
         ]
         req.app.get('db').addFollowing(body).then(() => {
-            req.app.get('db').getRecommended([req.user.id]).then(resp => {
+            req.app.get('db').getFollowing([req.user.id]).then(resp => {
                 res.status(200).send(resp);
             });
         });
