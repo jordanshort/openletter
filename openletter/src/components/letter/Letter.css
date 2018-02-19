@@ -65,13 +65,20 @@
     text-align: left;
     margin-left: 250px;
     margin-top: 70px;
-    /* border: 1px solid red; */
     width: 750px;
-    height: calc(100vh-70px);
+    height: 450px;
     border-radius: 2px;
     background-color: #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1),
-    rgba(0, 0, 0, .2);
+    0 1px 2px 0 rgba(0, 0, 0, .2);
+}
+
+.response-container {
+    width: 750px;
+    margin-left: 250px;
+    background: #f2f2f2;
+    border: solid 2px grey;
+    padding: 15px;
 }
 
 .people-you-follow h1 {

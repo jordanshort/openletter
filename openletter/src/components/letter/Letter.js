@@ -3,20 +3,29 @@ import Header from '../header/Header';
 import './Letter.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { authenticated, fetchThisLetter, handleDelete, handleCosign, followAuthor } from '../../redux/reducer';
+import { authenticated, fetchThisLetter, handleDelete, handleCosign, followAuthor, getResponses } from '../../redux/reducer';
 import renderHTML from 'react-render-html';
 import '../../fontawesome-all';
+import ResponseCard from '../responseCard/ResponseCard';
 // import { socketConnect } from 'socket.io-react';
 
 class Home extends Component{
+    constructor(){
+        super();
+        this.state = {
+            showResponses: false
+        }
+    }
 
     componentDidMount(){
         let { socket } = this.props;
+        let id = this.props.match.params.id;
         // let { user, authenticated, history } = this.props;
         // if (!user){
         //     authenticated(history);
         // }
-        this.props.fetchThisLetter(this.props.match.params.id);
+        this.props.fetchThisLetter(id);
+        this.props.getResponses(id);
 
         // socket.on('cosign', function(data){
         //     console.log(data);
@@ -68,6 +77,14 @@ class Home extends Component{
                        <span>Addressed To {selectedLetter.addressed_to}</span> <br/>
                        {renderHTML(selectedLetter.content)}
                     </div>
+                    <button className="btn" onClick={() => this.setState({showResponses: true})}>Responses</button>                    
+                    {this.state.showResponses ? 
+                        <div className="response-container">
+                            <ResponseCard />
+                        </div>
+                    : null
+                    }
+                    
                 </div>
             </div>
         )
@@ -78,7 +95,8 @@ function mapStateToProps(state){
     return{
         user: state.user,
         selectedLetter: state.selectedLetter,
-        following: state.following
+        following: state.following,
+        responses: state.responses
     };
 };
 
@@ -87,7 +105,8 @@ let actions = {
     fetchThisLetter, 
     handleDelete, 
     handleCosign, 
-    followAuthor
+    followAuthor,
+    getResponses
 }
 
 export default connect(mapStateToProps, actions)(Home);

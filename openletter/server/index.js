@@ -6,6 +6,7 @@ const express = require('express')
     , bodyParser = require('body-parser')
     , letterctrl = require('./letterController')
     , userctrl = require('./userController')
+    , responsectrl = require('./responseController')
     , networkctrl = require('./networkController')
     , socket_io = require('socket.io')
     , http = require('http');
@@ -106,6 +107,10 @@ app.get('/following', networkctrl.getFollowing);
 app.get('/followers', networkctrl.getFollowers);
 app.get('/recommended', userctrl.getRecommended);
 app.post('/following/new', userctrl.addFollowing);
+
+//response endpoints
+app.post('/response/:letterid', responsectrl.postResponse);
+app.get('/responses/:letterid', responsectrl.getResponses);
 
 let users = {};
 io.on('connection', function(socket){

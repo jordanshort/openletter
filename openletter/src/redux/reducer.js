@@ -12,6 +12,7 @@ const initialState = {
     authorLetters: [],
     author: {first_name: 'first_name', last_name: 'last_name'},
     notifications: [],
+    responses: []
 }
 
 const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
@@ -29,6 +30,8 @@ const DELETE_LETTER = 'DELETE_LETTER';
 const ADD_NOTIFICATIONS = 'ADD_NOTIFICATIONS';
 const GET_RECOMMENDED = 'GET_RECOMMENDED';
 const FETCH_FOLLOWING_LETTERS = 'FETCH_FOLLOWING_LETTERS';
+const POST_RESPONSE = 'POST_RESPONSE';
+const GET_RESPONSES = 'GET_RESPONSES';
 
 
 //reducer
@@ -61,6 +64,8 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {recommended: payload});
         case FETCH_FOLLOWING_LETTERS + '_FULFILLED':
             return Object.assign({}, state, {followingLetters: payload});
+        case GET_RESPONSES + '_FULFILLED':
+            return Object.assign({}, state, {responses: payload});
         default: 
             return state;
     };
@@ -215,6 +220,20 @@ export function fetchFollowingLetters(){
     let promise = axios.get('/followingletters').then(resp => resp.data);
     return{
         type: FETCH_FOLLOWING_LETTERS,
+        payload: promise
+    };
+};
+
+export function postResponse(body, letterid, history){
+    let promise = axios.post(`/response/${letterid}`, body).then(resp => {
+        history.goBack();
+    });
+};
+
+export function getResponses(letterid){
+    let promise = axios.get(`/responses/${letterid}`).then(resp => resp.data);
+    return{
+        type: GET_RESPONSES,
         payload: promise
     };
 };
