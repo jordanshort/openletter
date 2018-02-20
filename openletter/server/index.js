@@ -13,7 +13,7 @@ const express = require('express')
 const app = express();
 require('dotenv').config();
 app.use(bodyParser.json());
-const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, S3_SECRET, S3_ACCESS_KEY } = process.env;
 const server = http.createServer(app)
     , io = socket_io(server);
 
@@ -114,16 +114,19 @@ app.get('/responses/:letterid', responsectrl.getResponses);
 
 let users = {};
 io.on('connection', function(socket){
-    socket.emit('who are you');
-    socket.on('check in', function (incoming) {
-        users[incoming.id] = socket.id;
-        console.log(users);
+    socket.on('check in', function (data) {
+        app.get('db').addSocket([socket.id, data.userID]).then((resp) => {
+        }).catch(err => console.log(err));
     });
 
     socket.on('cosign', function(data){
         app.get('db').letterCosign([data.userId, data.letterId]).then(resp => {
-            io.sockets.emit('cosign', resp)
-        })
+            app.get('db').findAuthor([resp[0].letter_id]).then(resp => {
+                if (resp[0].socket_id){
+                io.sockets.connected[resp[0].socket_id].emit('cosign', 'Someone just cosigned your letter!');
+                }
+            });
+        });
     });
     
     socket.on('test', function(data){

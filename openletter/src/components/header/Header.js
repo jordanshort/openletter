@@ -4,6 +4,7 @@ import '../../fontawesome-all';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getFollowers, getFollowing } from '../../redux/reducer';
+import { socketConnect } from 'socket.io-react';
 
 class Header extends Component{
     constructor(){
@@ -16,6 +17,10 @@ class Header extends Component{
     componentDidMount(){
         this.props.getFollowers();
         this.props.getFollowing();
+        this.props.socket.on('cosign', function(data){
+            console.log(data);
+            alert(data);
+        });
     }
 
     handleChange(val){
@@ -58,5 +63,5 @@ function mapStateToProps(state){
     };
 };
 
-export default connect(mapStateToProps, { getFollowers, getFollowing })(Header);
+export default socketConnect(connect(mapStateToProps, { getFollowers, getFollowing })(Header));
 

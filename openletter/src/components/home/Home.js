@@ -5,19 +5,26 @@ import { Link } from 'react-router-dom';
 import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
 import { authenticated, fetchFollowingLetters } from '../../redux/reducer';
-// import { socketConnect } from 'socket.io-react';
+import { socketConnect } from 'socket.io-react';
 // import socketIOClient from 'socket.io-client';
 // const socket = socketIOClient('http://localhost:4050');
 
 class Home extends Component{
 
     componentDidMount(){
-        let { user, authenticated, history, fetchFollowingLetters  } = this.props;
+        let { user, authenticated, history, fetchFollowingLetters, socket  } = this.props;
         if (!user.id){
             authenticated(history);
         }
 
         fetchFollowingLetters();
+
+        
+    }
+
+    componentWillReceiveProps(nextProps){
+        let { socket, user } = this.props;
+        if (user.id) {socket.emit('check in', {userID: user.id})};
     }
 
 
@@ -63,4 +70,4 @@ function mapStateToProps(state){
     };
 };
 
-export default connect(mapStateToProps, { authenticated, fetchFollowingLetters })(Home);
+export default socketConnect(connect(mapStateToProps, { authenticated, fetchFollowingLetters })(Home));

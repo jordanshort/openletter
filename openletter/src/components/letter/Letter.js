@@ -3,11 +3,11 @@ import Header from '../header/Header';
 import './Letter.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { authenticated, fetchThisLetter, handleDelete, handleCosign, followAuthor, getResponses } from '../../redux/reducer';
+import { authenticated, fetchThisLetter, handleDelete, followAuthor, getResponses } from '../../redux/reducer';
 import renderHTML from 'react-render-html';
 import '../../fontawesome-all';
 import ResponseCard from '../responseCard/ResponseCard';
-// import { socketConnect } from 'socket.io-react';
+import { socketConnect } from 'socket.io-react';
 
 class Home extends Component{
     constructor(){
@@ -18,7 +18,7 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        let { socket } = this.props;
+        
         let id = this.props.match.params.id;
         // let { user, authenticated, history } = this.props;
         // if (!user){
@@ -26,22 +26,17 @@ class Home extends Component{
         // }
         this.props.fetchThisLetter(id);
         this.props.getResponses(id);
-
-        // socket.on('cosign', function(data){
-        //     console.log(data);
-        // });
     }
 
-    // handleCosign(){
-    //     let {user, selectedLetter, socket} = this.props;
-    //     socket.emit('cosign', {userId: user.id, letterId: selectedLetter.letter_id})
-    // }
+    handleCosign(){
+        let {user, selectedLetter, socket} = this.props;
+        socket.emit('cosign', {userId: user.id, letterId: selectedLetter.letter_id})
+    }
 
 
     render(){
         // if (!this.props.user){ return null}
-        console.log(this.props.responses);
-        const { selectedLetter, match, following, handleDelete, history, handleCosign, socket, user, responses } = this.props;
+        const { selectedLetter, match, following, handleDelete, history, socket, user, responses } = this.props;
         const authorControls = this.props.user.id == this.props.selectedLetter.author_id ? 
                 <div className="letter-author-container">
                     <Link to={`/editletter/${selectedLetter.letter_id}`}><button className="btn">Edit</button></Link>
@@ -71,7 +66,7 @@ class Home extends Component{
                             }
                         </div>
                         <div className="letter-author-container">
-                            <button onClick={() => handleCosign({userId: user.id, letterId: selectedLetter.letter_id}, socket)}className="btn">Cosign</button>
+                            <button onClick={() => this.handleCosign()}className="btn">Cosign</button>
                             <Link to={`/response/${selectedLetter.letter_id}`}><button className="btn">Respond</button></Link>
                         </div>
                         {authorControls}
@@ -108,10 +103,9 @@ function mapStateToProps(state){
 let actions = {
     authenticated, 
     fetchThisLetter, 
-    handleDelete, 
-    handleCosign, 
+    handleDelete,  
     followAuthor,
     getResponses
 }
 
-export default connect(mapStateToProps, actions)(Home);
+export default socketConnect(connect(mapStateToProps, actions)(Home));

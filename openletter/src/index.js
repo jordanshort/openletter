@@ -6,16 +6,19 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-// import { SocketProvider } from 'socket.io-react';
-// import io from 'socket.io-client';
+import { SocketProvider } from 'socket.io-react';
+import io from 'socket.io-client';
 
-// const socket = io.connect('http://localhost:4050');
+const socket = io.connect('http://localhost:4050');
 
 ReactDOM.render(
+<SocketProvider socket={socket} >
     <Provider store={store}>
         <BrowserRouter>
             <App />
         </BrowserRouter>
     </Provider>
+</SocketProvider>
+    
 , document.getElementById('root'));
 // registerServiceWorker();
