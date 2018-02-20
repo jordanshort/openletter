@@ -1,17 +1,21 @@
 import React from 'react';
 import './ResponseCard.css';
+import { Link } from 'react-router-dom';
 
 export default function ResponseCard(props){
+    const { response } = this.props;
     return(
         <div className="response-card">
             <div className="response-card-author">
-                <img src="http://robohash.org/jordan" alt=""/>
-                <div>
-                    <span>Jordan</span>
-                    <span>Short</span>
-                </div>
+                <Link to={`/profile/${response.author_id}`} >
+                    <img src={response.picture} alt="Author's Picture"/>
+                    <div>
+                        <span>{response.first_name}</span>
+                        <span>{response.last_name}</span>
+                    </div>
+                </Link>
             </div>
-            <div className="response-card-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, corrupti cum. Ut voluptatem eos quisquam possimus pariatur voluptatum sunt doloremque maiores perspiciatis obcaecati, repellat molestiae atque laborum natus sit expedita!</div>
+            <div className="response-card-content">{response.content}</div>
         </div>
     )
 }

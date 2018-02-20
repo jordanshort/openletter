@@ -5,7 +5,6 @@ import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 import { connect } from 'react-redux';
 import { postResponse } from '../../redux/reducer';
-import { Link } from 'react-router-dom';
 
 
 class Response extends Component{
@@ -25,7 +24,7 @@ class Response extends Component{
 
     onSubmit(){
         let { postResponse, history, match } = this.props;
-        this.props.postResponse(this.state.text, match.params.letterid, this.props.history);
+        postResponse(this.state.text, match.params.letterid, history);
     };
 
 

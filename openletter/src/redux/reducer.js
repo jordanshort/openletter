@@ -225,9 +225,14 @@ export function fetchFollowingLetters(){
 };
 
 export function postResponse(body, letterid, history){
-    let promise = axios.post(`/response/${letterid}`, body).then(resp => {
+    let promise = axios.post(`/response/${letterid}`, {text: body}).then(resp => {
         history.goBack();
+        return resp.data;
     });
+    return{
+        type: POST_RESPONSE,
+        payload: promise
+    };
 };
 
 export function getResponses(letterid){

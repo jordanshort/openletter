@@ -40,13 +40,16 @@ class Home extends Component{
 
     render(){
         // if (!this.props.user){ return null}
-        const { selectedLetter, match, following, handleDelete, history, handleCosign, socket, user } = this.props;
+        const { selectedLetter, match, following, handleDelete, history, handleCosign, socket, user, responses } = this.props;
         const authorControls = this.props.user.id == this.props.selectedLetter.author_id ? 
                 <div className="letter-author-container">
                     <Link to={`/editletter/${selectedLetter.letter_id}`}><button className="btn">Edit</button></Link>
                     <button onClick={() => handleDelete(selectedLetter.letter_id, history)} className="btn">Delete</button>
                 </div>
                 : null;
+        const letterResponses = !responses.length ? null : responses.map(response => {
+            <ResponseCard key={response.response_id} response={response} />
+        })
         return(
             <div className="letter-root">
                 <Header />
@@ -68,7 +71,7 @@ class Home extends Component{
                         </div>
                         <div className="letter-author-container">
                             <button onClick={() => handleCosign({userId: user.id, letterId: selectedLetter.letter_id}, socket)}className="btn">Cosign</button>
-                            <button className="btn">Respond</button>
+                            <Link to={`/response/${selectedLetter.letter_id}`}><button className="btn">Respond</button></Link>
                         </div>
                         {authorControls}
                     </div>
@@ -80,7 +83,7 @@ class Home extends Component{
                     <button className="btn" onClick={() => this.setState({showResponses: true})}>Responses</button>                    
                     {this.state.showResponses ? 
                         <div className="response-container">
-                            <ResponseCard />
+                            {letterResponses}
                         </div>
                     : null
                     }
