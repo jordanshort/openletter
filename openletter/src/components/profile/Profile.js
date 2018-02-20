@@ -13,6 +13,9 @@ class Profile extends Component{
         super();
         this.state = {
             show: false,
+            firstName: '',
+            lastName: '',
+            email: '',
             month: '',
             day: '',
             year: '',
@@ -36,6 +39,9 @@ class Profile extends Component{
     componentWillReceiveProps(nextProps){
         const { user } = nextProps;
         this.setState({
+            firstName: user.first_name,
+            lastName: user.last_name,
+            email: user.email,
             month: user.birth_month,
             day: user.birth_day,
             year: user.birth_year,
@@ -74,7 +80,10 @@ class Profile extends Component{
           year: this.state.year,
           about: this.state.about,
           job: this.state.job,
-          employer: this.state.employer 
+          employer: this.state.employer,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email 
         }
         this.props.updateProfile(userUpdate);
         this.handleClose();
@@ -94,12 +103,21 @@ class Profile extends Component{
                                 <img src={user.picture} alt=""/>                            
                                 : 'Add a picture'}
                         </div>
-                        <div className="user-profile-name">{user.first_name} {user.last_name}</div>
+                        <div className="user-profile-name">
+                            {user.first_name ? 
+                                `${user.first_name} ${user.last_name}`
+                                : 'Add your name'}
+                        </div>
                         <div className="user-profile-birthday">
                             { user.birth_month ?
                                 `${user.birth_month} ${user.birth_day}, ${user.birth_year}`
                                 : 'Add your birthday'}
                         </div>
+                        <div className="user-profile-about">
+                            {user.email ?
+                                `${user.email}`
+                                : 'Add your email address'
+                            }</div>
                         <div className="user-profile-about">
                             {user.about_me ?
                                 `${user.about_me}`
@@ -141,7 +159,10 @@ class Profile extends Component{
                     handleSelect={this.handleSelect} 
                     show={this.state.show} 
                     handleClose={this.handleClose} 
-                    month={this.state.month} 
+                    month={this.state.month}
+                    firstName={this.state.firstName} 
+                    lastName={this.state.lastName} 
+                    email={this.state.email} 
                     day={this.state.day} 
                     year={this.state.year}
                     handleChange={this.handleChange}

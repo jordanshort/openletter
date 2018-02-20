@@ -20,7 +20,10 @@ module.exports = {
            req.body.about,
            req.body.job,
            req.body.employer,
-           req.user.id
+           req.user.id,
+           req.body.firstName,
+           req.body.lastName,
+           req.body.email
         ];
         req.app.get('db').updateUser(update).then(resp => {
             res.status(200).send(resp[0]);

@@ -8,7 +8,6 @@ module.exports = {
 
     getResponses: function(req, res){
         let id = Number(req.params.letterid);
-        console.log(id);
         req.app.get('db').getResponses([id]).then(resp => {
             res.status(200).send(resp);
         });

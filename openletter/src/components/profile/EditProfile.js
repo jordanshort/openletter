@@ -12,7 +12,11 @@ export default function EditProfile(props){
                     <Modal.Title>Edit Your Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div>Add A Profile Picture <i className="fas fa-camera fa-sm"></i> </div>
+                    <div className="edit-title">
+                        Edit Your Name
+                    </div>
+                    <input placeholder="Add your first name"value={props.firstName} className="edit-input" onChange={(e) => props.handleChange('firstName', e.target.value)}/>
+                    <input placeholder="Add your last name"value={props.lastName} className="edit-input" onChange={(e) => props.handleChange('lastName', e.target.value)}/>
                     <div className="birthday">
                         <div className="edit-title">
                             Edit Your Birthday
@@ -70,6 +74,11 @@ export default function EditProfile(props){
                                 <FormControl className="year-input" bsSize="small" type="text" value={props.year} placeholder="Enter 4 digit Year ex: 1986" onChange={(e) => props.handleChange('year', e.target.value)} />
                             </FormGroup>
                         </ButtonToolbar>
+
+                        <div className="edit-title">
+                            Edit Your Email
+                        </div>
+                        <input placeholder="Add your Email"value={props.email} className="edit-input" onChange={(e) => props.handleChange('email', e.target.value)}/>
                         
                         <div>
                             <div className="edit-title">

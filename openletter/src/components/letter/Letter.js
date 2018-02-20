@@ -77,6 +77,7 @@ class Home extends Component{
                         {authorControls}
                     </div>
                     <div className="letter-scroll-container">
+                        <span onClick={() => this.props.history.goBack()} className="letter-close"><i  className="far fa-window-close fa-1x"></i></span>   
                        <span>{this.props.selectedLetter.title}</span> <br/>
                        <span>Addressed To {selectedLetter.addressed_to}</span> <br/>
                        {renderHTML(selectedLetter.content)}

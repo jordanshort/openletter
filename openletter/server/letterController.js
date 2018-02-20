@@ -60,7 +60,6 @@ module.exports = {
     },
 
     getFollowingLetters: function(req, res){
-        console.log('Endpoint hit')
         req.app.get('db').getFollowingLetters([req.user.id]).then(resp => {
             res.status(200).send(resp);
         });

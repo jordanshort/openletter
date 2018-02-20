@@ -27,7 +27,7 @@ export default function LetterCard(props){
                 </div>
                 <div className="card-bottom">
                     <span className="cosigns">Cosigns({letter.cosign_total})</span>
-                    <span className="card-responses">Responses(17)</span>
+                    <span className="card-responses">Responses({letter.responses_total})</span>
                 </div>
             </div>
 
