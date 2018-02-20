@@ -40,6 +40,7 @@ class Home extends Component{
 
     render(){
         // if (!this.props.user){ return null}
+        console.log(this.props.responses);
         const { selectedLetter, match, following, handleDelete, history, handleCosign, socket, user, responses } = this.props;
         const authorControls = this.props.user.id == this.props.selectedLetter.author_id ? 
                 <div className="letter-author-container">
@@ -48,7 +49,7 @@ class Home extends Component{
                 </div>
                 : null;
         const letterResponses = !responses.length ? null : responses.map(response => {
-            <ResponseCard key={response.response_id} response={response} />
+            return <ResponseCard key={response.response_id} response={response} />
         })
         return(
             <div className="letter-root">

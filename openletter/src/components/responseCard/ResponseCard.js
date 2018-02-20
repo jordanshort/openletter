@@ -1,9 +1,11 @@
 import React from 'react';
 import './ResponseCard.css';
 import { Link } from 'react-router-dom';
+import renderHTML from 'react-render-html';
+
 
 export default function ResponseCard(props){
-    const { response } = this.props;
+    const { response } = props;
     return(
         <div className="response-card">
             <div className="response-card-author">
@@ -15,7 +17,7 @@ export default function ResponseCard(props){
                     </div>
                 </Link>
             </div>
-            <div className="response-card-content">{response.content}</div>
+            <div className="response-card-content">{renderHTML(response.content)}</div>
         </div>
     )
 }
