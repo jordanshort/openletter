@@ -11,5 +11,12 @@ module.exports = {
         req.app.get('db').getResponses([id]).then(resp => {
             res.status(200).send(resp);
         });
+    }, 
+
+    getCosigners: function(req, res){
+        let id = Number(req.params.id);
+        req.app.get('db').getCosigners([id]).then(resp => {
+            res.status(200).send(resp);
+        });
     }
 }

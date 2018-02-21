@@ -6,10 +6,21 @@ import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
 import { authenticated, fetchFollowingLetters } from '../../redux/reducer';
 import { socketConnect } from 'socket.io-react';
+import axios from 'axios';
+import CosignerModal from '../cosignerModal/CosignerModal';
 // import socketIOClient from 'socket.io-client';
 // const socket = socketIOClient('http://localhost:4050');
 
 class Home extends Component{
+    constructor(props){
+        super();
+        this.state = {
+            cosigners: [],
+            showCosigners: false
+        }
+        this.getCosigners = this.getCosigners.bind(this);
+        this.onHide = this.onHide.bind(this);
+    }
 
     componentDidMount(){
         let { user, authenticated, history, fetchFollowingLetters, socket  } = this.props;
@@ -27,12 +38,22 @@ class Home extends Component{
         if (user.id) {socket.emit('check in', {userID: user.id})};
     }
 
+    getCosigners(id){
+        axios.get(`/cosigners/${id}`).then(resp => {
+            this.setState({cosigners: resp.data, showCosigners: true});
+        }).catch(err => console.log(err));
+        
+    }
+
+    onHide(){
+        this.setState({showCosigners: false});
+    }
 
     render(){
         const { followingLetters } = this.props;
         if (!this.props.user){ return null}
         const follLetters = !followingLetters.length ? null : followingLetters.map(letter => (
-            <LetterCard key={letter.letter_id} letter={letter} />
+            <LetterCard key={letter.letter_id} letter={letter} getCosigners={this.getCosigners} />
         ))
         return(
             <div className="home-root-container">
@@ -58,6 +79,7 @@ class Home extends Component{
                         </div>
                     </div>
                 </div>
+                <CosignerModal cosigners={this.state.cosigners} show={this.state.showCosigners} onHide={this.onHide}/>
             </div>
         )
     }

@@ -8,29 +8,40 @@ import renderHTML from 'react-render-html';
 import '../../fontawesome-all';
 import ResponseCard from '../responseCard/ResponseCard';
 import { socketConnect } from 'socket.io-react';
+import axios from 'axios';
 
 class Home extends Component{
     constructor(){
         super();
         this.state = {
-            showResponses: false
+            showResponses: false,
+            cosigners: []
         }
     }
 
     componentDidMount(){
         
         let id = this.props.match.params.id;
-        // let { user, authenticated, history } = this.props;
-        // if (!user){
-        //     authenticated(history);
-        // }
+        let { user, authenticated, history } = this.props;
+        if (!user.id){
+            authenticated(history);
+        }
         this.props.fetchThisLetter(id);
         this.props.getResponses(id);
+        this.getCosigners();
     }
+
 
     handleCosign(){
         let {user, selectedLetter, socket} = this.props;
-        socket.emit('cosign', {userId: user.id, letterId: selectedLetter.letter_id})
+        socket.emit('cosign', {userId: user.id, letterId: selectedLetter.letter_id});
+        this.getCosigners();
+    }
+
+    getCosigners(){
+        axios.get(`/cosigners/${this.props.match.params.id}`).then(resp => {
+            this.setState({cosigners: resp.data});
+        }).catch(err => console.log(err));
     }
 
 
@@ -66,7 +77,13 @@ class Home extends Component{
                             }
                         </div>
                         <div className="letter-author-container">
+                            {this.state.cosigners.findIndex((cosigner) => {
+                                return cosigner.user_id == user.id;
+                            }) === -1 ? 
                             <button onClick={() => this.handleCosign()}className="btn">Cosign</button>
+                            :
+                            <button className="btn">Cosigned <i className="fas fa-check fa-xs"></i></button>
+                            }
                             <Link to={`/response/${selectedLetter.letter_id}`}><button className="btn">Respond</button></Link>
                         </div>
                         {authorControls}
@@ -105,7 +122,7 @@ let actions = {
     fetchThisLetter, 
     handleDelete,  
     followAuthor,
-    getResponses
+    getResponses,
 }
 
 export default socketConnect(connect(mapStateToProps, actions)(Home));

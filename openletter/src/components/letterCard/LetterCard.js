@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function LetterCard(props){
 
-        const { letter } = props;
+        const { letter, getCosigners } = props;
         return(
             <div className="letter-card">
                 <div className="card-top">
@@ -26,7 +26,7 @@ export default function LetterCard(props){
                     </div>
                 </div>
                 <div className="card-bottom">
-                    <span className="cosigns">Cosigns({letter.cosign_total})</span>
+                    <span className="cosigns" onClick={() => getCosigners(letter.letter_id)}>Cosigns({letter.cosign_total})</span>
                     <span className="card-responses">Responses({letter.responses_total})</span>
                 </div>
             </div>

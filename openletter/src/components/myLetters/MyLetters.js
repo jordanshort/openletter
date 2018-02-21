@@ -5,8 +5,19 @@ import { Link } from 'react-router-dom';
 import MyLetterCard from '../myLetterCard/MyLetterCard';
 import { connect } from 'react-redux';
 import { authenticated, fetchMyLetters } from '../../redux/reducer';
+import CosignerModal from '../cosignerModal/CosignerModal';
+import axios from 'axios';
 
 class Home extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            cosigners: [],
+            showCosigners: false
+        };
+        this.onHide = this.onHide.bind(this);
+        this.getCosigners = this.getCosigners.bind(this);
+    }
 
     componentDidMount(){
         // let { user, authenticated, history } = this.props;
@@ -14,6 +25,16 @@ class Home extends Component{
         //     authenticated(history);
         // }
         // this.props.fetchMyLetters();
+    }
+
+    getCosigners(id){
+        axios.get(`/cosigners/${id}`).then(resp => {
+            this.setState({cosigners: resp.data, showCosigners: true});
+        }).catch(err => console.log(err));
+    }
+
+    onHide(){
+        this.setState({showCosigners: false});
     }
 
     render(){
@@ -39,7 +60,7 @@ class Home extends Component{
                     <div className="myletters-scroll-container">
                         <div className="my-letters">
                             <h1>My Letters</h1>
-                            <MyLetterCard history={this.props.history}/>
+                            <MyLetterCard history={this.props.history} getCosigners={this.getCosigners}/>
                             {/* { this.props.myLetters
                                 ?
                                 this.props.myletters.map(letter => (
@@ -51,6 +72,7 @@ class Home extends Component{
                         </div>
                     </div>
                 </div>
+                <CosignerModal onHide={this.onHide} show={this.state.showCosigners} cosigners={this.state.cosigners}/>
             </div>
         )
     }
