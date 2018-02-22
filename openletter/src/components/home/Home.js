@@ -55,6 +55,7 @@ class Home extends Component{
         const follLetters = !followingLetters.length ? null : followingLetters.map(letter => (
             <LetterCard key={letter.letter_id} letter={letter} getCosigners={this.getCosigners} />
         ))
+        console.log(followingLetters);
         return(
             <div className="home-root-container">
                 

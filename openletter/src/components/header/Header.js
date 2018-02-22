@@ -3,7 +3,7 @@ import './Header.css';
 import '../../fontawesome-all';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getFollowers, getFollowing } from '../../redux/reducer';
+import { getFollowers, getFollowing, submitSearch } from '../../redux/reducer';
 import { socketConnect } from 'socket.io-react';
 
 class Header extends Component{
@@ -27,13 +27,18 @@ class Header extends Component{
         this.setState({term: val})
     }
 
+    onSubmit(){
+        let { submitSearch, history } = this.props;
+        submitSearch({term: this.state.term}, history);
+    }
+
     render(){
         console.log(this.state.term);
         return(
             <div className="header">
                 <div className="header-logo">OpenLetter</div>
                 <div>Notifications({this.props.notifications.length})</div>
-                    <form className="input-group">
+                    <form className="input-group" onSubmit={() => this.onSubmit()}>
                         <input 
                         placeholder="Search"
                         className="form-control"
@@ -63,5 +68,5 @@ function mapStateToProps(state){
     };
 };
 
-export default socketConnect(connect(mapStateToProps, { getFollowers, getFollowing })(Header));
+export default socketConnect(connect(mapStateToProps, { getFollowers, getFollowing, submitSearch })(Header));
 

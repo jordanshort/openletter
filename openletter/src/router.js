@@ -11,6 +11,7 @@ import AuthorProfile from './components/authorProfile/AuthorProfile';
 import EditLetter from './components/editLetter/EditLetter';
 import Network from './components/network/Network';
 import Response from './components/response/Response';
+import SearchResults from './components/searchResults/SearchResults';
 
 
 
@@ -25,6 +26,7 @@ export default (
         <Route path='/editletter/:id' component={EditLetter} />
         <Route path='/network/:id' component={Network} />
         <Route path='/response/:letterid' component={Response} />
+        <Route path ='/searchresults' component={SearchResults} />
         <Route path='/' component={Login} />
     </Switch>
 )

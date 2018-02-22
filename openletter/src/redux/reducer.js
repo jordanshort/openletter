@@ -12,7 +12,8 @@ const initialState = {
     authorLetters: [],
     author: {first_name: 'first_name', last_name: 'last_name'},
     notifications: [],
-    responses: []
+    responses: [],
+    results: []
 }
 
 const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
@@ -32,6 +33,7 @@ const GET_RECOMMENDED = 'GET_RECOMMENDED';
 const FETCH_FOLLOWING_LETTERS = 'FETCH_FOLLOWING_LETTERS';
 const POST_RESPONSE = 'POST_RESPONSE';
 const GET_RESPONSES = 'GET_RESPONSES';
+const SEARCH = 'SEARCH';
 
 
 //reducer
@@ -66,6 +68,8 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {followingLetters: payload});
         case GET_RESPONSES + '_FULFILLED':
             return Object.assign({}, state, {responses: payload});
+        case SEARCH + 'FULFILLED':
+            return Object.assign({}, state, {results: payload});
         default: 
             return state;
     };
@@ -239,6 +243,17 @@ export function getResponses(letterid){
     let promise = axios.get(`/responses/${letterid}`).then(resp => resp.data);
     return{
         type: GET_RESPONSES,
+        payload: promise
+    };
+};
+
+export function submitSearch(term, history){
+    let promise = axios.post('/search', term).then(resp => {
+        history.push('/searchresults');
+        return resp.data;
+    });
+    return{
+        type: SEARCH,
         payload: promise
     };
 };

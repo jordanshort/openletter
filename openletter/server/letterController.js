@@ -63,6 +63,14 @@ module.exports = {
         req.app.get('db').getFollowingLetters([req.user.id]).then(resp => {
             res.status(200).send(resp);
         });
+    },
+
+    search: function(req, res){
+        let searchTerms = req.body.term.split(' ');
+        req.app.get('db').search(searchTerms).then(resp => {
+            console.log(resp);
+            res.status(200).send(resp);
+        });
     }
 
 }

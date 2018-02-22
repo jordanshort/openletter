@@ -116,6 +116,7 @@ app.get('/authletters/:author', letterctrl.getAuthLetters);
 app.put('/letters/:id', letterctrl.editLetter);
 app.delete('/letters/:id', letterctrl.delete);
 app.get('/followingletters', letterctrl.getFollowingLetters);
+app.post('/search', letterctrl.search);
 
 //user endpoints
 app.get('/user/:id', userctrl.getAuthor);
