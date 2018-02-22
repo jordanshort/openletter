@@ -67,14 +67,17 @@ class NewPost extends Component{
                         <input placeholder="Title" name="title" value={this.state.title} onChange={(e) => this.inputChange('title', e.target.value)}/> <br/>
                         <input placeholder="Description" name="description" value={this.state.description} onChange={(e) => this.inputChange('description', e.target.value)}/> <br/>
                         <input placeholder="Addressed To:" name="addressedTo" value={this.state.addressedTo} onChange={(e) => this.inputChange('addressedTo', e.target.value)}/>
-                        <ReactQuill
+                        <ReactQuill 
                             placeholder="Compose your letter"
                             theme="snow"
-                            value={this.state.text}
-                            onChange={this.handleChange}
-                            modules = {modules}
-                            formats = {formats}
-                             />
+                            modules = {this.modules}
+                            formats = {this.formats}
+                             >
+                             <div
+                                value={this.state.text}
+                                onChange={this.handleChange}
+                                className="my-editing-area"/>
+                             </ReactQuill>
                              <button className="btn" onClick={() => this.onSubmit()}>Send</button>
                              <Link to="/home"><button className="btn">Cancel</button></Link>
                     </div>
