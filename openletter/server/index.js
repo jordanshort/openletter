@@ -9,11 +9,13 @@ const express = require('express')
     , responsectrl = require('./responseController')
     , networkctrl = require('./networkController')
     , socket_io = require('socket.io')
-    , AWS = require('aws-sdk')
+    , S3 = require('./s3')
+    , cors = require('cors')
     , http = require('http');
 const app = express();
 require('dotenv').config();
 app.use(bodyParser.json());
+app.use(cors());
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID, AWS_REGION, AWS_BUCKET } = process.env;
 const server = http.createServer(app)
     , io = socket_io(server);
@@ -22,24 +24,7 @@ massive(CONNECTION_STRING).then( db => {
     app.set('db', db);
 });
 
-const s3 = new AWS.S3();
-AWS.config.update({
-    accessKeyId: AWS_ACCESS_KEY_ID,
-    secretAccessKey: AWS_SECRET_ACCESS_KEY,
-    region: AWS_REGION
-})
-
-app.use(
-    '/s3',
-    require('react-s3-uploader/s3router')({
-      bucket: AWS_BUCKET,
-      region: AWS_REGION, //optional
-      signatureVersion: 'v4', //optional (use for some amazon regions: frankfurt and others)
-      headers: { 'Access-Control-Allow-Origin': 'http://localhost:3000' }, // optional
-      ACL: 'public-read', // this is default
-      uniquePrefix: false // (4.0.2 and above) default is true, setting the attribute to false preserves the original filename in S3
-    })
-  );
+S3(app);
 
 app.use(session({
     secret: SESSION_SECRET,

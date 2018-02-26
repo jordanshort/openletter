@@ -44,6 +44,12 @@
     margin-bottom: 15px;
 }
 
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
 .user-profile-name {
     font-weight: 700;
     font-size: 20px;

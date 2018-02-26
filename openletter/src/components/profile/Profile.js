@@ -7,8 +7,8 @@ import { fetchUser, updateProfile, getRecommended } from '../../redux/reducer';
 import EditProfile from './EditProfile';
 import AuthorCard from '../authorCard/AuthorCard';
 import { Link } from 'react-router-dom';
-import ReactS3Uploader from 'react-s3-uploader';
 import '../../fontawesome-all';
+import UploadPhoto from '../uploadPhoto/UploadPhoto';
 
 class Profile extends Component{
     constructor(){
@@ -101,25 +101,11 @@ class Profile extends Component{
                 <div className="user-profile-body-container">
                     <div className="user-profile-card">
                         <div>
-                            <ReactS3Uploader
-                            signingUrl="/s3/sign"
-                            signingUrlMethod="GET"
-                            signingUrlWithCredentials={true}
-                            s3path="/uploads/"
-                            uploadRequestHeaders={{'x-amz-acl' : 'public-read'}}
-                            className="image-uploader" 
-                            name="file" 
-                            id="file"
-                            contentDisposition="auto"
-                            accepts="image/*"
-                            autoUpload = {true}
-                            server="http://localhost:4050"
-                            />
-    
+                            <UploadPhoto userID={user.id}/>
                         </div>
                         <div className="user-profile-picture">
                             { user.picture ? 
-                                <img src={user.picture} alt=""/>                            
+                                <img className="profile-pic" src={user.picture} alt=""/>                            
                                 : 'Add a picture'}
                         </div>
                         <div className="user-profile-name">
