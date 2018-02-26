@@ -22,10 +22,11 @@ function uploadPhoto(req, res){
     }
 
     S3.upload(params, (err, data) => {
-        console.log(err, data)
-        req.app.get('db').addPicture([data.Location, photo.userID]).then()
-        let response, code
-        err ? (response = err, code = 500) : response = (data, code = 200)
+        console.log(photo.userID);
+        req.app.get('db').addPicture([data.Location, photo.userID]).then(resp => {
+        }).catch(err => console.log(err));
+        let response, code;        
+        err ? (response = err, code = 500) : (response = data, code = 200)
         res.status(code).send(response)
         console.log('S3 response', data)
     })

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Modal, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { updatePicture } from '../../redux/reducer';
 
 function sendToback(photo){
     console.log(photo);
     return axios.post('/api/photoUpload', photo);
 }
 
-export default class UploadPhoto extends Component{
+class UploadPhoto extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -41,22 +44,37 @@ export default class UploadPhoto extends Component{
         event.preventDefault();
 
         sendToback(this.state).then(response => {
-            console.log(response.data);
+            this.props.updatePicture(response.data.Location);
+            this.props.handleClose('showPicModal');
+            console.log(response);
         });
     }
 
     render(){
         this.state.file && console.log(this.state.photo)
         return(
-            <div className="FileUpload">
-                <input type="file" onChange={this.handlePhoto}/>
-                <br/>
-                {
-                this.state.file &&
-                <img src={this.state.file} alt="" className="file-preview"/>
-                }
-                <button onClick={this.sendPhoto}>Submit</button>
-            </div>
+            <Modal show={this.props.show}>
+                <Modal.Header>
+                    <Modal.Title>Select A Picture</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className="FileUpload">
+                        <input type="file" onChange={this.handlePhoto}/>
+                        <br/>
+                        {
+                        this.state.file &&
+                        <img src={this.state.file} alt="" className="file-preview"/>
+                        }
+                        <button onClick={this.sendPhoto}>Submit</button>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button bsStyle="danger" onClick={() => this.props.handleClose('showPicModal')}>Cancel</Button>
+                </Modal.Footer>
+            </Modal>
+            
         )
     }
 }
+
+export default connect(null, { updatePicture })(UploadPhoto);

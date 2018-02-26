@@ -102,7 +102,7 @@ export default function EditProfile(props){
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={props.handleSubmit}>Save</Button>
-                    <Button bsStyle="danger" onClick={props.handleClose}>Cancel</Button>
+                    <Button bsStyle="danger" onClick={() => props.handleClose('show')}>Cancel</Button>
                 </Modal.Footer>
             </Modal>
 

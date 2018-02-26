@@ -61,6 +61,11 @@ module.exports = {
 
     getFollowingLetters: function(req, res){
         req.app.get('db').getFollowingLetters([req.user.id]).then(resp => {
+            resp.sort(function(a, b){
+                a = new Date(a.created_at);
+                b = new Date(b.created_at);
+                return a>b ? -1 : a<b ? 1 : 0;
+            });
             res.status(200).send(resp);
         });
     },

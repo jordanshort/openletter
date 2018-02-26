@@ -15,6 +15,7 @@ class Profile extends Component{
         super();
         this.state = {
             show: false,
+            showPicModal: false,
             firstName: '',
             lastName: '',
             email: '',
@@ -53,12 +54,12 @@ class Profile extends Component{
         });
     }
 
-    handleClose(){
-        this.setState({show: false});
+    handleClose(name){
+        this.setState({[name]: false});
     }
 
-    handleShow(){
-        this.setState({show: true});
+    handleShow(name){
+        this.setState({[name]: true});
     }
 
     handleSelect(name, val){
@@ -88,25 +89,28 @@ class Profile extends Component{
           email: this.state.email 
         }
         this.props.updateProfile(userUpdate);
-        this.handleClose();
+        this.handleClose('show');
     }
 
 
     render(){
         // if (!this.props.user){return null};
-        const { user, following, followers, recommended } = this.props;
+        const { user, following, followers, recommended, history } = this.props;
         return(
             <div className="user-profile-root">
                 <Header />
                 <div className="user-profile-body-container">
                     <div className="user-profile-card">
                         <div>
-                            <UploadPhoto userID={user.id}/>
+                            <UploadPhoto userID={user.id} history={history} handleClose={this.handleClose} show={this.state.showPicModal}/>
                         </div>
                         <div className="user-profile-picture">
                             { user.picture ? 
                                 <img className="profile-pic" src={user.picture} alt=""/>                            
                                 : 'Add a picture'}
+                        </div>
+                        <div onClick={() => this.handleShow('showPicModal')}>
+                            Add/Change your picture <i className="fas fa-camera"></i>
                         </div>
                         <div className="user-profile-name">
                             {user.first_name ? 
@@ -144,7 +148,7 @@ class Profile extends Component{
                             <span>Followers ({followers.length})</span>
                             </Link>
                         </div>
-                        <button className="btn" onClick={this.handleShow}>Edit Profile</button>
+                        <button className="btn" onClick={() => this.handleShow('show')}>Edit Profile</button>
                         <div className="recommended-container">
                             <div className="recommended-title">
                             <span>Recommended Authors To Follow</span>

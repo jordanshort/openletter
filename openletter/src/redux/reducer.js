@@ -34,6 +34,7 @@ const FETCH_FOLLOWING_LETTERS = 'FETCH_FOLLOWING_LETTERS';
 const POST_RESPONSE = 'POST_RESPONSE';
 const GET_RESPONSES = 'GET_RESPONSES';
 const SEARCH = 'SEARCH';
+const UPDATE_PICTURE = 'UPDATE_PICTURE';
 
 
 //reducer
@@ -70,6 +71,8 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {responses: payload});
         case SEARCH + 'FULFILLED':
             return Object.assign({}, state, {results: payload});
+        case UPDATE_PICTURE:
+            return Object.assign({}, state, {user: {...state.user, picture: payload}});
         default: 
             return state;
     };
@@ -255,5 +258,12 @@ export function submitSearch(term, history){
     return{
         type: SEARCH,
         payload: promise
+    };
+};
+
+export function updatePicture(url){
+    return{
+        type: UPDATE_PICTURE,
+        payload: url
     };
 };
