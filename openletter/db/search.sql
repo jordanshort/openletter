@@ -15,4 +15,4 @@ left join cosigns on cosigns.letter_id = letters.id
 left join responses on responses.letter_id = letters.id
 group by letters.id, letters.title, letters.description, letters.addressed_to, letters.content, letters.author_id, letters.created_at, users.first_name, users.last_name, users.picture)
 l_search
-where l_search.document @@ to_tsquery($1 & $2 & $3 & $4 & $5 & $6 & $7 & $9 & $10);
+where l_search.document @@ to_tsquery($1);

@@ -71,11 +71,20 @@ module.exports = {
     },
 
     search: function(req, res){
-        let searchTerms = req.body.term.split(' ');
-        req.app.get('db').search(searchTerms).then(resp => {
+        let splitTerm = req.body.term.split(' ');
+        let searchArr = [];
+        for (let i = 0; i < splitTerm.length; i++){
+            if (i === splitTerm.length-1){
+                searchArr.push(splitTerm[i]);
+            } else {
+                searchArr.push(splitTerm[i] + ' & ');
+            };
+        };
+        let searchTerms = searchArr.join('');
+        req.app.get('db').search([searchTerms]).then(resp => {
             console.log(resp);
             res.status(200).send(resp);
-        });
+        }).catch(err => console.log(err));
     }
 
 }

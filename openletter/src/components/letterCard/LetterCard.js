@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
 import '../myLetterCard/MyLetterCard.css';
 import { connect } from 'react-redux';
-import { fetchAuthorLetters } from '../../redux/reducer';
+import { fetchAuthorLetters, getCosigners } from '../../redux/reducer';
 import { Link } from 'react-router-dom';
+import CosignerModal from '../cosignerModal/CosignerModal';
 
-export default function LetterCard(props){
+class LetterCard extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            showCosigners: false
+        };
 
-        const { letter, getCosigners } = props;
+        this.onHide = this.onHide.bind(this);
+    }
+
+    onHide(){
+        this.setState({showCosigners: false});
+    }
+
+    render(){
+        const { letter, getCosigners, cosigners } = this.props;
         return(
             <div className="letter-card">
                 <div className="card-top">
@@ -26,12 +40,21 @@ export default function LetterCard(props){
                     </div>
                 </div>
                 <div className="card-bottom">
-                    <span className="cosigns" onClick={() => getCosigners(letter.letter_id)}>Cosigns({letter.cosign_total})</span>
+                    <span className="cosigns" onClick={() => {
+                        this.setState({showCosigners: true});
+                        getCosigners(letter.letter_id)}}>Cosigns({letter.cosign_total})</span>
                     <span className="card-responses">Responses({letter.responses_total})</span>
                 </div>
+                <CosignerModal cosigners={cosigners} show={this.state.showCosigners} onHide={this.onHide}/>                
             </div>
 
         );
+    }
 }
+function mapStateToProps(state){
+    return{cosigners: state.cosigners};
+};
+
+export default connect(mapStateToProps, { getCosigners })(LetterCard);
 
 

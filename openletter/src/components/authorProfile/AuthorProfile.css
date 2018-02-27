@@ -41,6 +41,12 @@
     margin-bottom: 15px;
 }
 
+.author-profile-picture img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
 .author-profile-name {
     font-weight: 700;
     font-size: 20px;

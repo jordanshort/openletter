@@ -44,7 +44,7 @@ class Home extends Component{
         // })
         return(
             <div className="myletters-root">
-                <Header />
+                <Header history={this.props.history}/>
                 <div className="myletters-body-container">
                     <div className="myletters-side-menu">
                         <div className="myletters-btn-container" >

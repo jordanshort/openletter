@@ -59,7 +59,7 @@ class Home extends Component{
         })
         return(
             <div className="letter-root">
-                <Header />
+                <Header history={history} />
                 <div className="letter-body-container">
                     <div className="side-menu">
                         <div className="letter-author-container" >

@@ -48,7 +48,7 @@ class Response extends Component{
 
         return(
             <div className="new-post-root">
-                <Header />
+                <Header history={this.props.history}/>
                 <div className="new-post-body-container">
                     <div className="editor-container">
                         <ReactQuill

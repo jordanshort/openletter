@@ -27,18 +27,18 @@ class Header extends Component{
         this.setState({term: val})
     }
 
-    onSubmit(){
+    onSubmit(event){
+        event.preventDefault();
         let { submitSearch, history } = this.props;
         submitSearch({term: this.state.term}, history);
     }
 
     render(){
-        console.log(this.state.term);
         return(
             <div className="header">
                 <div className="header-logo">OpenLetter</div>
                 <div>Notifications({this.props.notifications.length})</div>
-                    <form className="input-group" onSubmit={() => this.onSubmit()}>
+                    <form className="input-group" onSubmit={(e) => this.onSubmit(e)}>
                         <input 
                         placeholder="Search"
                         className="form-control"

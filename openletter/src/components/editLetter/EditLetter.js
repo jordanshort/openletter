@@ -75,7 +75,7 @@ class EditLetter extends Component{
 
         return(
             <div className="new-post-root">
-                <Header />
+                <Header history={this.props.history} />
                 <div className="new-post-body-container">
                     <div className="editor-container">
                         <input placeholder="Title" name="title" value={this.state.title} onChange={(e) => this.inputChange('title', e.target.value)}/> <br/>

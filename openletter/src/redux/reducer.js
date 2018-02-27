@@ -13,7 +13,8 @@ const initialState = {
     author: {first_name: 'first_name', last_name: 'last_name'},
     notifications: [],
     responses: [],
-    results: []
+    results: [],
+    cosigners: []
 }
 
 const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
@@ -35,6 +36,7 @@ const POST_RESPONSE = 'POST_RESPONSE';
 const GET_RESPONSES = 'GET_RESPONSES';
 const SEARCH = 'SEARCH';
 const UPDATE_PICTURE = 'UPDATE_PICTURE';
+const GET_COSIGNERS = 'GET_COSIGNERS';
 
 
 //reducer
@@ -69,10 +71,12 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {followingLetters: payload});
         case GET_RESPONSES + '_FULFILLED':
             return Object.assign({}, state, {responses: payload});
-        case SEARCH + 'FULFILLED':
+        case SEARCH + '_FULFILLED':
             return Object.assign({}, state, {results: payload});
         case UPDATE_PICTURE:
             return Object.assign({}, state, {user: {...state.user, picture: payload}});
+        case GET_COSIGNERS + '_FULFILLED':
+            return Object.assign({}, state, {cosigners: payload});
         default: 
             return state;
     };
@@ -252,6 +256,7 @@ export function getResponses(letterid){
 
 export function submitSearch(term, history){
     let promise = axios.post('/search', term).then(resp => {
+        console.log(resp.data);
         history.push('/searchresults');
         return resp.data;
     });
@@ -267,3 +272,13 @@ export function updatePicture(url){
         payload: url
     };
 };
+
+export function getCosigners(id){
+    let promise = axios.get(`/cosigners/${id}`).then(resp => {
+        return resp.data
+        });
+        return{
+            type: GET_COSIGNERS,
+            payload: promise
+        };
+}

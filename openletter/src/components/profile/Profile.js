@@ -98,7 +98,7 @@ class Profile extends Component{
         const { user, following, followers, recommended, history } = this.props;
         return(
             <div className="user-profile-root">
-                <Header />
+                <Header history={history} />
                 <div className="user-profile-body-container">
                     <div className="user-profile-card">
                         <div>

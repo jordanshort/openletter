@@ -18,13 +18,13 @@ class AuthorProfile extends Component{
 
     render(){
         
-        const { author, following, match, followAuthor, authorLetters } = this.props;
+        const { author, following, match, followAuthor, authorLetters, history } = this.props;
         const authLetters = !authorLetters.length ? null : authorLetters.map(letter => (
             <LetterCard key={letter.letter_id} letter={letter}/>
         ))
         return(
             <div className="author-profile-root">
-                <Header />
+                <Header history={history} />
                 <div className="author-profile-body-container">
                     <div className="author-profile-card">
                         <div className="author-profile-picture">

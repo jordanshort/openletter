@@ -8,7 +8,7 @@ class Network extends Component{
 
     
     render(){
-        const { followers, following } = this.props;
+        const { followers, following, history } = this.props;
         const authFollowers = !followers.length ? null : followers.map( author => (
             <AuthorCard author={author} />
         ));
@@ -19,7 +19,7 @@ class Network extends Component{
         return(
             <div className="network-root">
                 <div>
-                    <Header />
+                    <Header history={history} />
                 </div>
                 <div className="network-main-container">
                     <div className="network-body-container">
