@@ -84,6 +84,13 @@ module.exports = {
         req.app.get('db').search([searchTerms]).then(resp => {
             res.status(200).send(resp);
         }).catch(err => console.log(err));
+    },
+
+    save: function(req, res){
+        let letterID = Number(req.params.id);
+        req.app.get('db').save([letterID, req.user.id]).then(response => {
+            res.status(200).send(response);
+        });
     }
 
 }

@@ -12,6 +12,7 @@ import EditLetter from './components/editLetter/EditLetter';
 import Network from './components/network/Network';
 import Response from './components/response/Response';
 import SearchResults from './components/searchResults/SearchResults';
+import Saved from './components/saved/Saved';
 
 
 
@@ -27,6 +28,7 @@ export default (
         <Route path='/network/:id' component={Network} />
         <Route path='/response/:letterid' component={Response} />
         <Route path ='/searchresults' component={SearchResults} />
+        <Route path = '/saved' component={Saved} />
         <Route path='/' component={Login} />
     </Switch>
 )

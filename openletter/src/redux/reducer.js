@@ -37,6 +37,7 @@ const GET_RESPONSES = 'GET_RESPONSES';
 const SEARCH = 'SEARCH';
 const UPDATE_PICTURE = 'UPDATE_PICTURE';
 const GET_COSIGNERS = 'GET_COSIGNERS';
+const SAVE = 'SAVE';
 
 
 //reducer
@@ -281,4 +282,15 @@ export function getCosigners(id){
             type: GET_COSIGNERS,
             payload: promise
         };
-}
+};
+
+export function save(id){
+    let promise = axios.post(`/saveletter/${id}`).then(resp => {
+        alert('Letter saved for later!');
+        return resp.data;
+    });
+    return{
+        type: SAVE,
+        payload: promise
+    };
+};

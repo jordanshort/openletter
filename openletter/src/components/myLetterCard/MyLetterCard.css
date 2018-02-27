@@ -119,6 +119,14 @@
     cursor: pointer;
 }
 
+.card-save {
+    position: relative;
+    left: 450px;
+}
+
+.card-save:hover {
+    cursor: pointer;
+}
 
 
 

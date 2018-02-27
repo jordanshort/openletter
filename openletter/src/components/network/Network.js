@@ -10,10 +10,10 @@ class Network extends Component{
     render(){
         const { followers, following, history } = this.props;
         const authFollowers = !followers.length ? null : followers.map( author => (
-            <AuthorCard author={author} />
+            <AuthorCard key={author.id} author={author} />
         ));
         const authFollowing = !following.length ? null : following.map( author => (
-            <AuthorCard author={author} />
+            <AuthorCard key={author.id} author={author} />
         ))
 
         return(

@@ -36,6 +36,9 @@
 }
 .letter-author-container img {
     margin-bottom: 10px;
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
 }
 .letter-auth {
     margin-bottom: 3px;

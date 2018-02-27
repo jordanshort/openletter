@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../myLetterCard/MyLetterCard.css';
 import { connect } from 'react-redux';
-import { fetchAuthorLetters, getCosigners } from '../../redux/reducer';
+import { fetchAuthorLetters, getCosigners, save } from '../../redux/reducer';
 import { Link } from 'react-router-dom';
 import CosignerModal from '../cosignerModal/CosignerModal';
 
@@ -20,7 +20,7 @@ class LetterCard extends Component{
     }
 
     render(){
-        const { letter, getCosigners, cosigners } = this.props;
+        const { letter, getCosigners, cosigners, save } = this.props;
         return(
             <div className="letter-card">
                 <div className="card-top">
@@ -44,6 +44,7 @@ class LetterCard extends Component{
                         this.setState({showCosigners: true});
                         getCosigners(letter.letter_id)}}>Cosigns({letter.cosign_total})</span>
                     <span className="card-responses">Responses({letter.responses_total})</span>
+                    <span className="card-save" onClick={() => save(letter.letter_id)}>Save</span>
                 </div>
                 <CosignerModal cosigners={cosigners} show={this.state.showCosigners} onHide={this.onHide}/>                
             </div>
@@ -55,6 +56,6 @@ function mapStateToProps(state){
     return{cosigners: state.cosigners};
 };
 
-export default connect(mapStateToProps, { getCosigners })(LetterCard);
+export default connect(mapStateToProps, { getCosigners, save })(LetterCard);
 
 

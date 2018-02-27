@@ -102,6 +102,7 @@ app.put('/letters/:id', letterctrl.editLetter);
 app.delete('/letters/:id', letterctrl.delete);
 app.get('/followingletters', letterctrl.getFollowingLetters);
 app.post('/search', letterctrl.search);
+app.post('/saveletter/:id', letterctrl.save);
 
 //user endpoints
 app.get('/user/:id', userctrl.getAuthor);
