@@ -15,6 +15,7 @@ class SearchResults extends Component{
     }
 
     render(){
+        
         const displayResults = this.props.results.map(letter => (
             <LetterCard key={letter.letter_id} letter={letter}  />
         ))

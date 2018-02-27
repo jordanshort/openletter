@@ -91,6 +91,21 @@ module.exports = {
         req.app.get('db').save([letterID, req.user.id]).then(response => {
             res.status(200).send(response);
         });
+    },
+
+    getSaved: function(req, res){
+        req.app.get('db').getSaved([req.user.id]).then(resp => {
+            res.status(200).send(resp);
+        });
+    },
+
+    deleteSaved: function(req, res){
+        letterID = Number(req.params.id);
+        req.app.get('db').deleteSaved([letterID, req.user.id]).then(() => {
+            req.app.get('db').getSaved([req.user.id]).then(resp => {
+                res.status(200).send(resp);
+            });
+        });
     }
 
 }

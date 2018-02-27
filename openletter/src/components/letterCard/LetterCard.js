@@ -20,7 +20,7 @@ class LetterCard extends Component{
     }
 
     render(){
-        const { letter, getCosigners, cosigners, save } = this.props;
+        const { letter, getCosigners, cosigners, save, savedLetters, removeFromSaved } = this.props;
         return(
             <div className="letter-card">
                 <div className="card-top">
@@ -44,7 +44,11 @@ class LetterCard extends Component{
                         this.setState({showCosigners: true});
                         getCosigners(letter.letter_id)}}>Cosigns({letter.cosign_total})</span>
                     <span className="card-responses">Responses({letter.responses_total})</span>
+                    {!savedLetters ?
                     <span className="card-save" onClick={() => save(letter.letter_id)}>Save</span>
+                    :
+                    <span className="card-save" onClick={() => removeFromSaved(letter.letter_id)}>Remove</span>                    
+                    }
                 </div>
                 <CosignerModal cosigners={cosigners} show={this.state.showCosigners} onHide={this.onHide}/>                
             </div>
