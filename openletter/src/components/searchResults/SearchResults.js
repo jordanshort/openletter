@@ -15,11 +15,13 @@ class SearchResults extends Component{
     }
 
     render(){
-        
+        const authors = this.props.results.filter((elem, i, arr) => {
+            return i === arr.findIndex((auth) => elem.author_id === auth.author_id);
+        })
         const displayResults = this.props.results.map(letter => (
             <LetterCard key={letter.letter_id} letter={letter}  />
         ))
-        const authorResults = this.props.results.map(result => (
+        const authorResults = authors.map(result => (
             <ResultsAuthor key={result.letter_id} result={result} />
         ))
         return(

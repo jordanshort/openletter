@@ -257,7 +257,6 @@ export function getResponses(letterid){
 
 export function submitSearch(term, history){
     let promise = axios.post('/search', term).then(resp => {
-        console.log(resp.data);
         history.push('/searchresults');
         return resp.data;
     });

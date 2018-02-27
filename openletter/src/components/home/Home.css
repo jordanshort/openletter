@@ -41,6 +41,12 @@
     margin-bottom: 10px;
 }
 
+#welcome {
+    font-weight: 600;
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+
 .home-scroll-container {
     text-align: left;
     margin-left: 250px;

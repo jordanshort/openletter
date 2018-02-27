@@ -51,24 +51,19 @@ class Home extends Component{
                             <Link to="/newpost"><button className="btn">Compose Letter</button></Link>
                         </div>
                         <div className="side-links">
+                            <h4 id="welcome">Welcome {this.props.user ? this.props.user.first_name : 'nameholder'}</h4>                            
                             <Link to="/myletters"><h4>My Letters</h4></Link>
-                            <h4>Saved For Later</h4>
+                            <Link to="/saved"><h4>Saved For Later</h4></Link>
                             <h4>Subscriptions</h4>
-                            <h4>Welcome {this.props.user ? this.props.user.first_name : 'nameholder'}</h4>
                         </div>
                     </div>
                     <div className="myletters-scroll-container">
                         <div className="my-letters">
                             <h1>My Letters</h1>
                             <MyLetterCard history={this.props.history} getCosigners={this.getCosigners}/>
-                            {/* { this.props.myLetters
-                                ?
-                                this.props.myletters.map(letter => (
-                                    <MyLetterCard key={letter.letter_id} letter={letter} />
-                                ))
-                                :
-                                <h2>No letters to display...go write a letter!</h2>
-                            } */}
+                            { this.props.myLetters.length ? null : 
+                                <h2>You have no letters to display...go write a letter!</h2>
+                            }
                         </div>
                     </div>
                 </div>
@@ -81,7 +76,7 @@ class Home extends Component{
 function mapStateToProps(state){
     return{
         user: state.user,
-        // myLetters: state.myLetters
+        myLetters: state.myLetters
     };
 };
 
