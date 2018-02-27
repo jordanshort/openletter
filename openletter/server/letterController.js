@@ -82,7 +82,6 @@ module.exports = {
         };
         let searchTerms = searchArr.join('');
         req.app.get('db').search([searchTerms]).then(resp => {
-            console.log(resp);
             res.status(200).send(resp);
         }).catch(err => console.log(err));
     }

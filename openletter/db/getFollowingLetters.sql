@@ -1,5 +1,6 @@
 select letters.id as letter_id, letters.title, letters.description, letters.addressed_to, letters.content, letters.author_id,
-count(cosigns.letter_id) as cosign_total, count(distinct responses.letter_id) as responses_total,
+(select count(letter_id) from cosigns where cosigns.letter_id = letters.id) as cosign_total, 
+(select count(letter_id) from responses where responses.letter_id = letters.id) as responses_total,
 letters.created_at, letters.cosigns, 
 users.first_name, users.last_name, users.picture
 from 
