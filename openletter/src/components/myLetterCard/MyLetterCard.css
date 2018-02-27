@@ -9,6 +9,7 @@
     margin-left: 3px;
     /* display: block; */
     position: relative;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .card-top {
@@ -16,7 +17,6 @@
     width: 100%;
     /* border: 1px solid red; */
     display: flex;
-
 }
 
 .card-author {
@@ -43,22 +43,25 @@
 }
 
 .card-description {
-    height: 70px;
+    height: 65px;
     width: 100%;
     /* border: 1px solid blue; */
     padding-top: 3px;
     padding-left: 5px;
+    margin-top: 5px;
 }
 
 .card-bottom {
     height: 40px;
     width: 100%;
     /* border: 1px solid orange; */
+    
 }
 
 .pic {
-    height: 85px;
-    width: 85px;
+    height: 70px;
+    width: 70px;
+    margin-bottom: 5px;
     /* border: 1px solid violet; */
 }
 
@@ -74,6 +77,8 @@
     width: 100%;
     /* background: pink; */
     padding-top: 5px;
+    font-weight: 700;
+    font-size: 19px;
 }
 
 .addressee {
@@ -82,6 +87,8 @@
     width: 100%;
     /* background: orange; */
     padding-bottom: 3px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(0, 0, 0, .1)
 }
 
 .card-bottom {
