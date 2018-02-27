@@ -1,0 +1,38 @@
+.results-author-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 10px;
+}
+
+.results-author-card-picture {
+    width: 65px;
+    height: 65px;
+}
+
+#results-auth-pic {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+
+.results-author-card-names {
+    font-weight: 600;
+    margin: 20px;
+}
+
+.results-author-card button {
+    position: absolute;
+    right: 20px;
+    background: #ffffff;
+    height: 30px;
+    width: 85px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, .1)
+}

@@ -96,6 +96,10 @@
     left: 15px;
 }
 
+.cosigns:hover {
+    cursor: pointer;
+}
+
 .card-responses {
     position: relative;
     left: 55px;
