@@ -64,22 +64,26 @@ class NewPost extends Component{
                 <Header history={this.props.history}/>
                 <div className="new-post-body-container">
                     <div className="editor-container">
-                        <input placeholder="Title" name="title" value={this.state.title} onChange={(e) => this.inputChange('title', e.target.value)}/> <br/>
-                        <input placeholder="Description" name="description" value={this.state.description} onChange={(e) => this.inputChange('description', e.target.value)}/> <br/>
-                        <input placeholder="Addressed To:" name="addressedTo" value={this.state.addressedTo} onChange={(e) => this.inputChange('addressedTo', e.target.value)}/>
+                        <input className="details-input" placeholder="Type Title Here" name="title" value={this.state.title} onChange={(e) => this.inputChange('title', e.target.value)}/> <br/>
+                        <input className="details-input" placeholder="Addressed To:" name="addressedTo" value={this.state.addressedTo} onChange={(e) => this.inputChange('addressedTo', e.target.value)}/><br/>
+                        <textarea className="details-input" placeholder="Type Description Here" name="description" value={this.state.description} onChange={(e) => this.inputChange('description', e.target.value)}/> 
                         <ReactQuill 
                             placeholder="Compose your letter"
                             theme="snow"
-                            modules = {this.modules}
-                            formats = {this.formats}
+                            modules = {modules}
+                            formats = {formats}
+                            value = {this.state.text}
+                            onChange = {this.handleChange}
                              >
-                             <div
+                             {/* <div
                                 value={this.state.text}
-                                onChange={this.handleChange}
-                                className="my-editing-area"/>
+                                onChange={() => this.handleChange()}
+                                className="my-editing-area"></div> */}
                              </ReactQuill>
-                             <button className="btn" onClick={() => this.onSubmit()}>Send</button>
-                             <Link to="/home"><button className="btn">Cancel</button></Link>
+                             <div className="letter-buttons">
+                                <button className="btn btn-default" onClick={(e) => this.onSubmit(e.target.value)}>Send</button>
+                                <Link to="/home"><button className="btn btn-danger">Cancel</button></Link>
+                             </div>
                     </div>
                 </div>
             </div>

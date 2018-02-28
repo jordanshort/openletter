@@ -78,9 +78,9 @@ class EditLetter extends Component{
                 <Header history={this.props.history} />
                 <div className="new-post-body-container">
                     <div className="editor-container">
-                        <input placeholder="Title" name="title" value={this.state.title} onChange={(e) => this.inputChange('title', e.target.value)}/> <br/>
-                        <input placeholder="Description" name="description" value={this.state.description} onChange={(e) => this.inputChange('description', e.target.value)}/> <br/>
-                        <input placeholder="Addressed To:" name="addressedTo" value={this.state.addressedTo} onChange={(e) => this.inputChange('addressedTo', e.target.value)}/>
+                        <input className="details-input" placeholder="Title" name="title" value={this.state.title} onChange={(e) => this.inputChange('title', e.target.value)}/> <br/>
+                        <input className="details-input" placeholder="Addressed To:" name="addressedTo" value={this.state.addressedTo} onChange={(e) => this.inputChange('addressedTo', e.target.value)}/><br/>
+                        <textarea className="details-input" placeholder="Description" name="description" value={this.state.description} onChange={(e) => this.inputChange('description', e.target.value)}/> 
                         <ReactQuill
                             placeholder="Compose your letter"
                             theme="snow"
@@ -89,8 +89,10 @@ class EditLetter extends Component{
                             modules = {modules}
                             formats = {formats}
                              />
-                             <button className="btn" onClick={() => this.onSubmit()}>Save</button>
-                             <Link to="/myletters"><button className="btn">Cancel</button></Link>
+                             <div className="letter-buttons">
+                             <button className="btn btn-default" onClick={() => this.onSubmit()}>Save</button>
+                             <Link to="/myletters"><button className="btn btn-danger">Cancel</button></Link>
+                             </div>
                     </div>
                 </div>
             </div>

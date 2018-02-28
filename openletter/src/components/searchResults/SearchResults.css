@@ -15,6 +15,7 @@
 
 .search-center-container {
     margin-top: 80px;
+    width: 705px;
 }
 
 .search-center-container h1 {
@@ -25,13 +26,14 @@
 .authors-container {
     position: relative;
     width: 705px;
-    height: 350px;
+    max-height: 350px;
     border-radius: 2px;
     background: #ffffff;
     margin-top: 20px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1),
     0 1px 2px 0 rgba(0, 0, 0, .2);
     padding: 7px;
+    box-sizing: border-box;
 }
 
 .view-all-authors-container {
@@ -62,7 +64,8 @@
 
 .results-authors-container {
     margin-top: 40px;
-    height: 270px;
+    margin-bottom: 30px;
+    max-height: 270px;
     overflow: hidden;
     
 }

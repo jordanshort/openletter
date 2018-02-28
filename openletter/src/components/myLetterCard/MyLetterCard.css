@@ -96,6 +96,9 @@
     position: relative;
     display: flex;
     align-items: center;
+    color: grey;
+    font-weight: 700;
+    font-size: 15px;
 }
 
 .cosigns {

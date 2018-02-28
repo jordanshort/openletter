@@ -92,7 +92,9 @@ class Home extends Component{
                         <span onClick={() => this.props.history.goBack()} className="letter-close"><i  className="far fa-window-close fa-1x"></i></span>   
                        <span>{this.props.selectedLetter.title}</span> <br/>
                        <span>Addressed To {selectedLetter.addressed_to}</span> <br/>
-                       {renderHTML(selectedLetter.content)}
+                       <div dangerouslySetInnerHTML={{__html: selectedLetter.content}}>
+                        {/* {renderHTML(selectedLetter.content)} */}
+                       </div>
                     </div>
                     <button className="btn" onClick={() => this.setState({showResponses: true})}>Responses</button>                    
                     {this.state.showResponses ? 

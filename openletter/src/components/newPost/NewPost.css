@@ -19,8 +19,8 @@
 
 .editor-container {
     /* display: inline-block; */
-    margin-top: 20px;
-    width: 1000px;
+    margin: 20px;
+    max-width: 800px;
     height: 100vh;
     
 }
@@ -34,4 +34,34 @@
     max-height: 450px;
     overflow: auto;
 
+}
+
+.ql-editor  {
+    height: 350px !important; 
+}
+
+.ql-editor strong {
+    font-weight: 700;
+}
+
+.ql-editor em {
+    font-style: italic;
+}
+
+.details-input {
+    width: 450px;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.editor-container {
+    font-family: 'PT Sans', sans-serif;
+}
+
+.letter-buttons {
+    margin-top: 5px;
+}
+
+.letter-buttons button {
+    margin-right: 5px;
 }
