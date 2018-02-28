@@ -39,9 +39,9 @@ class SearchResults extends Component{
                             </div>
                             <div className="authors-container-footer">
                                 {!this.state.viewAll ?
-                                <span><h4 onClick={() => this.setState({viewAll: true})}>See All</h4></span>
+                                <span><h4 onClick={() => this.setState({viewAll: true})}>View All</h4></span>
                                  :
-                                 <span><h4 onClick={() => this.setState({viewAll: false})}>Minimize</h4></span>                                  
+                                 <span><h4 onClick={() => this.setState({viewAll: false})}>View Less</h4></span>                                  
                                 }
                             </div>
                         </div>

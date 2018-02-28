@@ -9,6 +9,8 @@ import '../../fontawesome-all';
 import ResponseCard from '../responseCard/ResponseCard';
 import { socketConnect } from 'socket.io-react';
 import axios from 'axios';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css'
 
 class Home extends Component{
     constructor(){
@@ -42,6 +44,13 @@ class Home extends Component{
         axios.get(`/cosigners/${this.props.match.params.id}`).then(resp => {
             this.setState({cosigners: resp.data});
         }).catch(err => console.log(err));
+    }
+
+    showResponses(){
+        this.state.showResponses ? 
+        this.setState({showResponses: false})
+        :
+        this.setState({showResponses: true});
     }
 
 
@@ -90,13 +99,21 @@ class Home extends Component{
                     </div>
                     <div className="letter-scroll-container">
                         <span onClick={() => this.props.history.goBack()} className="letter-close"><i  className="far fa-window-close fa-1x"></i></span>   
-                       <span>{this.props.selectedLetter.title}</span> <br/>
-                       <span>Addressed To {selectedLetter.addressed_to}</span> <br/>
-                       <div dangerouslySetInnerHTML={{__html: selectedLetter.content}}>
-                        {/* {renderHTML(selectedLetter.content)} */}
-                       </div>
+                       <span id="read-letter-title">{this.props.selectedLetter.title}</span> <br/>
+                       <div id="read-addressed-to">Addressed To {selectedLetter.addressed_to}</div> <br/>
+                       
+                       <ReactQuill
+                            placeholder="Compose your letter"
+                            theme="bubble"
+                            value={selectedLetter.content} 
+                            toolbar={false} 
+                            readOnly={true}                          
+                             />
+                             
                     </div>
-                    <button className="btn" onClick={() => this.setState({showResponses: true})}>Responses</button>                    
+                    <div className="read-letter-footer">
+                                <p className="responses-btn" onClick={() => this.showResponses()}>Responses</p>                    
+                             </div>
                     {this.state.showResponses ? 
                         <div className="response-container">
                             {letterResponses}

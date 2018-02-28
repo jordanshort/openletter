@@ -2,12 +2,13 @@
     display: flex;
     background: #f2f2f2;
     min-width: 1100px;
-    height: 100vh;
+    height: 100%;
 }
 
 .letter-body-container {
     display: block; 
     background: #f2f2f2;
+    height: 100vh;
 }
 
 .side-menu {
@@ -71,7 +72,7 @@
     margin-left: 250px;
     margin-top: 80px;
     width: 750px;
-    height: 450px;
+    height: 500px;
     border-radius: 2px;
     background-color: #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1),
@@ -89,12 +90,50 @@
     cursor: pointer;
 }
 
+#read-letter-title {
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    text-align: center;
+}
+
+#read-addressed-to {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 20px;
+}
+
+.read-letter-footer {
+    width: 750px;
+    /* border: 1px solid red; */
+    margin-left: 250px;
+    margin-top: -33px;
+    text-align: left;
+    background: #e2e4e6;
+    height: 33px;
+    display: flex;
+    align-items: center;
+}
+
+.responses-btn {
+    margin-left: 15px;
+    font-family: 'PT Sans', sans-serif;
+    color: gray;
+    font-weight: 700;
+}
+
+.responses-btn:hover {
+    cursor: pointer;
+}
+
 .response-container {
     width: 750px;
     margin-left: 250px;
-    background: #f2f2f2;
-    border: solid 2px grey;
+    background: #eceef0;
     padding: 15px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1),
+    0 1px 2px 0 rgba(0, 0, 0, .2);
 }
 
 .people-you-follow h1 {
