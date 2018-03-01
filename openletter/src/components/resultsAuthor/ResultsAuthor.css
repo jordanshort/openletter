@@ -14,17 +14,23 @@
 .results-author-card-picture {
     width: 65px;
     height: 65px;
+    margin-left: 10px;
 }
 
 #results-auth-pic {
     width: 65px;
     height: 65px;
     object-fit: contain;
+    border-radius: 50%;
 }
 
 .results-author-card-names {
     font-weight: 600;
     margin: 20px;
+}
+
+.results-author-card-last {
+    margin-left: 5px;
 }
 
 .results-author-card button {

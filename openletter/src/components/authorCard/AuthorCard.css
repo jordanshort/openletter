@@ -16,17 +16,25 @@
 .author-card-picture {
     width: 80px;
     height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center
 }
 
 #auth-pic {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
+    border-radius: 50%;
 }
 
 .author-card-names {
     font-weight: 600;
     margin: 20px;
+}
+
+.author-card-last {
+    margin-left: 4px;
 }
 
 .recommended-author-card button {

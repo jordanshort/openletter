@@ -60,6 +60,7 @@
     height: 150px;
     padding-top: 8px;
     border-radius: 5px;
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, .5)    
 }
 
 .login-btn-container {
@@ -72,9 +73,10 @@
     border-radius: 2px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
     0 1px 2px 0 rgba(0, 0, 0, 0.2);
-    color: #ffffff;
-    border: none;
-    background-image: radial-gradient(circle at 50%-46%, #737373, #403d39);
+    color: rgba(0, 0, 0, .6);
+    border: 1px solid rgba(0, 0, 0, .3);
+    /* background-image: radial-gradient(circle at 50%-46%, #e2e4e6, #9da1a4); */
+    background: #ffffff;
     height: 36px;
     width: 220px;
     font-family: 'Open Sans', sans-seriff;

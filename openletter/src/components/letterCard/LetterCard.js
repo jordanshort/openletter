@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchAuthorLetters, getCosigners, save } from '../../redux/reducer';
 import { Link } from 'react-router-dom';
 import CosignerModal from '../cosignerModal/CosignerModal';
+import '../../fontawesome-all';
 
 class LetterCard extends Component{
     constructor(props){
@@ -42,7 +43,7 @@ class LetterCard extends Component{
                 <div className="card-bottom">
                     <span className="cosigns" onClick={() => {
                         this.setState({showCosigners: true});
-                        getCosigners(letter.letter_id)}}>Cosigns({letter.cosign_total})</span>
+                        getCosigners(letter.letter_id)}}><i className="far fa-edit"></i>Cosigns({letter.cosign_total})</span>
                     <span className="card-responses">Responses({letter.responses_total})</span>
                     {!savedLetters ?
                     <span className="card-save" onClick={() => save(letter.letter_id)}>Save</span>

@@ -14,7 +14,7 @@ function ResultsAuthor(props){
             <div className="results-author-card-names">
                 <Link to={`/profile/${result.author_id}`} >
                     <span className="results-author-card-first">{result.first_name}</span> 
-                    <span className="results-author-card-first">{result.last_name}</span>
+                    <span className="results-author-card-last">{result.last_name}</span>
                 </Link>
             </div>
             {following.findIndex(elem => {

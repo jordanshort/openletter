@@ -14,7 +14,7 @@ function AuthorCard(props){
             <div className="author-card-names">
                 <Link to={`/profile/${author.id}`} >
                     <span className="author-card-first">{author.first_name}</span> 
-                    <span className="author-card-first">{author.last_name}</span>
+                    <span className="author-card-last">{author.last_name}</span>
                 </Link>
             </div>
             {following.findIndex(elem => {

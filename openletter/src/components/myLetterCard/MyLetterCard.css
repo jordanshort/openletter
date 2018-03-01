@@ -33,6 +33,7 @@
 .card-details-container {
     width: calc(100% - 125px);
     height: 100%;
+    text-align: left;
 }
 
 .card-details {
@@ -62,6 +63,7 @@
     height: 70px;
     width: 70px;
     margin-bottom: 5px;
+    border-radius: 50%;
     /* border: 1px solid violet; */
 }
 
