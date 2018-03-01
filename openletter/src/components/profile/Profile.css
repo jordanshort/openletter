@@ -41,7 +41,7 @@
 .user-profile-picture {
     width: 150px;
     height: 150px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .profile-pic {
@@ -50,10 +50,15 @@
     object-fit: contain;
 }
 
+#add-pic:hover {
+    cursor: pointer;
+}
+
 .user-profile-name {
     font-weight: 700;
     font-size: 20px;
     margin-bottom: 5px;
+    margin-top: 20px;
 }
 
 .user-profile-birthday {
@@ -83,6 +88,8 @@
 .recommended-title {
     text-align: left;
     margin-bottom: 20px;
+    margin-left: 10px;
+    font-weight: 600;
 }
 
 .recommended-wrapper {

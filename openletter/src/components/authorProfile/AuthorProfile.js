@@ -38,9 +38,9 @@ class AuthorProfile extends Component{
                         { following.findIndex((author) => {
                             return author.id == match.params.id;
                         }) === -1 ? 
-                            <button onClick={() => followAuthor(author.id)} className="btn">Follow</button>
+                            <button onClick={() => followAuthor(author.id)} className="btn btn-default">Follow</button>
                             :
-                            <button className="btn">Following<i className="fas fa-check fa-xs"></i></button>
+                            <button className="btn btn-default">Following<i className="fas fa-check fa-xs"></i></button>
                             }
                     </div>
                     

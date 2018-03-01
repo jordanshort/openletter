@@ -109,7 +109,7 @@ class Profile extends Component{
                                 <img className="profile-pic" src={user.picture} alt=""/>                            
                                 : 'Add a picture'}
                         </div>
-                        <div onClick={() => this.handleShow('showPicModal')}>
+                        <div id="add-pic" onClick={() => this.handleShow('showPicModal')}>
                             Add/Change your picture <i className="fas fa-camera"></i>
                         </div>
                         <div className="user-profile-name">
@@ -148,7 +148,7 @@ class Profile extends Component{
                             <span>Followers ({followers.length})</span>
                             </Link>
                         </div>
-                        <button className="btn" onClick={() => this.handleShow('show')}>Edit Profile</button>
+                        <button className="btn btn-default" onClick={() => this.handleShow('show')}>Edit Profile</button>
                         <div className="recommended-container">
                             <div className="recommended-title">
                             <span>Recommended Authors To Follow</span>

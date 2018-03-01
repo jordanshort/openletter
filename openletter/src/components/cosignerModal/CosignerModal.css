@@ -2,7 +2,39 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+.cosigner {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .cosigner-modal-body {
     height: 350px;
     overflow: auto;
 }
+
+.cosigner-modal-body img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 25px;
+}
+
+.cosigner-modal-body span {
+    vertical-align: 15px;
+}
+
+.cosigner button {
+    position: absolute;
+    right: 20px;
+    background: #ffffff;
+    height: 30px;
+    width: 85px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, .1)
+}
+
+
+
