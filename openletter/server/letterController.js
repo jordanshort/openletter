@@ -16,6 +16,11 @@ module.exports = {
     get: function(req, res){
         // let { id } = req.user;
         req.app.get('db').getUserLetters([req.user.id]).then( resp => {
+            resp.sort(function(a, b){
+                a = new Date(a.created_at);
+                b = new Date(b.created_at);
+                return a>b ? -1 : a<b ? 1 : 0;
+            });
             res.status(200).send(resp);
         })
     },
@@ -30,6 +35,11 @@ module.exports = {
     getAuthLetters: function(req, res){
         let id = Number(req.params.author);
         req.app.get('db').getUserLetters([id]).then(resp => {
+            resp.sort(function(a, b){
+                a = new Date(a.created_at);
+                b = new Date(b.created_at);
+                return a>b ? -1 : a<b ? 1 : 0;
+            });
             res.status(200).send(resp)
         })
     },
@@ -82,6 +92,11 @@ module.exports = {
         };
         let searchTerms = searchArr.join('');
         req.app.get('db').search([searchTerms]).then(resp => {
+            resp.sort(function(a, b){
+                a = new Date(a.created_at);
+                b = new Date(b.created_at);
+                return a>b ? -1 : a<b ? 1 : 0;
+            });
             res.status(200).send(resp);
         }).catch(err => console.log(err));
     },

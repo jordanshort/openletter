@@ -82,7 +82,7 @@ class NewPost extends Component{
                              </ReactQuill>
                              <div className="letter-buttons">
                                 <button className="btn btn-default" onClick={(e) => this.onSubmit(e.target.value)}>Send</button>
-                                <Link to="/home"><button className="btn btn-danger">Cancel</button></Link>
+                                <button className="btn btn-danger" onClick={() => this.props.history.goBack()}>Cancel</button>
                              </div>
                     </div>
                 </div>

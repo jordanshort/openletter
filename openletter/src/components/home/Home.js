@@ -59,10 +59,15 @@ class Home extends Component{
                             <h4>Subscriptions</h4>
                         </div>
                     </div>
-                    <div className="home-scroll-container">
-                        <div className="people-you-follow">
-                            <h1>Home</h1>
-                            {follLetters}
+                    <div className="home-middle-container">
+                        <div className="home-scroll-container">
+                            <div className="people-you-follow">
+                                <h1>Home</h1>
+                                {follLetters}
+                            </div>
+                        </div>
+                        <div className="top-ten-container">
+                            <h1>Top Ten</h1>
                         </div>
                     </div>
                 </div>

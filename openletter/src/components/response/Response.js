@@ -59,8 +59,10 @@ class Response extends Component{
                             modules = {modules}
                             formats = {formats}
                              />
-                             <button className="btn" onClick={() => this.onSubmit()}>Send</button>
-                             <button onClick={() => this.props.history.goBack()} className="btn">Cancel</button>
+                             <div className="letter-buttons">
+                                <button className="btn btn-default" onClick={() => this.onSubmit()}>Send</button>
+                                <button onClick={() => this.props.history.goBack()} className="btn btn-danger">Cancel</button>
+                             </div>
                     </div>
                 </div>
             </div>

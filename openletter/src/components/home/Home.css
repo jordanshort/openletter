@@ -7,9 +7,16 @@
 }
 
 .home-body-container {
-    display: block; 
+    display: block;
     width: 100%;
     height: 100%;
+}
+
+.home-middle-container {
+    display: flex;
+    flex-direction: row;
+    width: 950px;
+    margin-left: 250px;
 }
 
 .home-side-menu {
@@ -49,14 +56,21 @@
 
 .home-scroll-container {
     text-align: left;
-    margin-left: 250px;
+    /* margin-left: 250px; */
     margin-top: 80px;
     margin-bottom: 50px;
     width: 750px;
 }
 
-.people-you-follow h1 {
+.home-middle-container h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
+}
+
+.top-ten-container {
+    text-align: left;
+    margin-top: 80px;
+    width: 250px;
+    height: 500px;
 }
 

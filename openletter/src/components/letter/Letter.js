@@ -103,7 +103,6 @@ class Home extends Component{
                        <div id="read-addressed-to">Addressed To {selectedLetter.addressed_to}</div> <br/>
                        
                        <ReactQuill
-                            placeholder="Compose your letter"
                             theme="bubble"
                             value={selectedLetter.content} 
                             toolbar={false} 
