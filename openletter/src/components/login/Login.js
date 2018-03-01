@@ -11,7 +11,7 @@ export default function Login(){
                     <div className="login-container">
                         <div className="login-logo-container"><i className="far fa-envelope-open fa-8x"></i></div>
                         <div className="login-btn-container">
-                            <a href="http://localhost:4050/auth"><button className="login-btn">Login/Register</button></a>
+                            <a href={process.env.REACT_APP_LOGIN}><button className="login-btn">Login/Register</button></a>
                         </div>
                     </div>
                 </div>

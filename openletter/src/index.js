@@ -9,7 +9,7 @@ import store from './store';
 import { SocketProvider } from 'socket.io-react';
 import io from 'socket.io-client';
 
-const socket = io.connect('http://localhost:4050');
+const socket = io.connect(process.env.REACT_APP_SOCKET_CONNECTION);
 
 ReactDOM.render(
 <SocketProvider socket={socket} >

@@ -11,14 +11,18 @@ const express = require('express')
     , socket_io = require('socket.io')
     , S3 = require('./s3')
     , cors = require('cors')
+    , path = require('path')
     , http = require('http');
 const app = express();
 require('dotenv').config();
 app.use(bodyParser.json());
 app.use(cors());
-const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID, AWS_REGION, AWS_BUCKET } = process.env;
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, AWS_SECRET_ACCESS_KEY, 
+    AWS_ACCESS_KEY_ID, AWS_REGION, AWS_BUCKET, CALLBACK_URL, REDIRECT_URL, LOGOUT_REDIRECT } = process.env;
 const server = http.createServer(app)
     , io = socket_io(server);
+
+app.use( express.static( `${__dirname}/../build` ) )
 
 massive(CONNECTION_STRING).then( db => {
     app.set('db', db);
@@ -41,7 +45,7 @@ passport.use(new Auth0Strategy({
     domain: 'jordanshort.auth0.com',
     clientID: 'LP55tMh6LiEd3QDXA5SwH8A97sqYl0yv', 
     clientSecret: 'yuY8CV9yMD0LTDCPQyVILrcFZmdWxs3wue1U-1ibEzfpJm8tpbXsS2xAq2YHdXuS',
-    callbackURL: 'http://localhost:4050/auth/callback',
+    callbackURL: CALLBACK_URL,
     scope: 'openid profile email'
 }, function(accessToken, refreshToken, extraParams, profile, done){
     // const picture = 'https://robohash.org/me';
@@ -76,7 +80,7 @@ passport.deserializeUser((id, done) => {
 //login endpoints
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/home'
+    successRedirect: REDIRECT_URL
 }))
 
 //authentication endpoints
@@ -90,7 +94,7 @@ app.get('/auth/authenticated', (req, res) => {
 //logout endpoint
 app.get('/logout', (req, res) => {
     req.logOut();
-    res.redirect('http://localhost:3000');
+    res.redirect(LOGOUT_REDIRECT);
 });
 
 //letter endpoints
@@ -144,5 +148,9 @@ io.on('connection', function(socket){
 
 
 })
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 server.listen(SERVER_PORT, () => console.log('Listening on port ' +SERVER_PORT));
