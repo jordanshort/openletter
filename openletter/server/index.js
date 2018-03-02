@@ -109,6 +109,7 @@ app.post('/search', letterctrl.search);
 app.post('/saveletter/:id', letterctrl.save);
 app.get('/saved', letterctrl.getSaved);
 app.delete('/saved/:id', letterctrl.deleteSaved);
+app.get('/topten', letterctrl.getTopTen);
 
 //user endpoints
 app.get('/user/:id', userctrl.getAuthor);

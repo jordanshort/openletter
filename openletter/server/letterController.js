@@ -121,6 +121,12 @@ module.exports = {
                 res.status(200).send(resp);
             });
         });
+    },
+
+    getTopTen: function(req, res){
+        req.app.get('db').getTopTen().then(resp => {
+            res.status(200).send(resp);
+        });
     }
 
 }

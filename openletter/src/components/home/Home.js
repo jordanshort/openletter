@@ -15,8 +15,8 @@ class Home extends Component{
     constructor(props){
         super();
         this.state = {
-           
-        }
+           topTen: []
+        };
     }
 
     componentDidMount(){
@@ -26,13 +26,18 @@ class Home extends Component{
         }
 
         fetchFollowingLetters();
-
-        
+        this.getTopTen();
     }
 
     componentWillReceiveProps(nextProps){
         let { socket, user } = this.props;
         if (user.id) {socket.emit('check in', {userID: user.id})};
+    }
+
+    getTopTen(){
+        axios.get('/topten').then(resp => {
+            this.setState({topTen: resp.data});
+        });
     }
 
     render(){
@@ -41,7 +46,16 @@ class Home extends Component{
         const follLetters = !followingLetters.length ? null : followingLetters.map(letter => (
             <LetterCard key={letter.letter_id} letter={letter} />
         ))
-        console.log(followingLetters);
+        const topTenList = this.state.topTen.map(letter => (
+            <div key={letter.letter_id} className="top-ten-list-item">
+                <Link to={`letter/${letter.letter_id}`}>
+                    <p id="tttitle">{letter.title}</p>
+                    <p id="ttadd">Addressed To {letter.addressed_to}</p>
+                    <p id="ttcosigns">{letter.cosigns_total} Cosigns</p>
+                </Link>
+            </div>
+        ))
+        console.log(this.state.topTen);
         return(
             <div className="home-root-container">
                 
@@ -68,6 +82,9 @@ class Home extends Component{
                         </div>
                         <div className="top-ten-container">
                             <h1>Top Ten</h1>
+                            <div className="top-ten-list">
+                                {topTenList}
+                            </div>
                         </div>
                     </div>
                 </div>

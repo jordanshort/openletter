@@ -74,3 +74,30 @@
     height: 500px;
 }
 
+.top-ten-list {
+    margin-left: 10px;
+    margin-top: 15px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.top-ten-list-item {
+    margin-bottom: 5px;
+    border-bottom: 1px solid lightgrey;
+}
+
+#tttitle {
+    font-weight: 700;
+    color: #36558F;
+}
+#ttadd {
+    color: grey;
+}
+
+#ttcosigns {
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: grey;
+}
+
