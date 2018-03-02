@@ -7,6 +7,8 @@ import ReactQuill from 'react-quill';
 import { connect } from 'react-redux';
 import { postLetter } from '../../redux/reducer';
 import { Link } from 'react-router-dom';
+import { Modal } from 'react-bootstrap';
+
 
 
 class NewPost extends Component{
@@ -16,7 +18,8 @@ class NewPost extends Component{
             title: '',
             description: '',
             text: '',
-            addressedTo: ''
+            addressedTo: '',
+            showModal: false
         };
         this.handleChange = this.handleChange.bind(this);
     };
@@ -82,10 +85,19 @@ class NewPost extends Component{
                              </ReactQuill>
                              <div className="letter-buttons">
                                 <button className="btn btn-default" onClick={(e) => this.onSubmit(e.target.value)}>Send</button>
-                                <button className="btn btn-danger" onClick={() => this.props.history.goBack()}>Cancel</button>
+                                <button className="btn btn-danger" onClick={() => this.setState({showModal: true})}>Cancel</button>
                              </div>
                     </div>
                 </div>
+                <Modal show={this.state.showModal}>
+                    <Modal.Body>
+                        All your work will be deleted.  Are you sure you still want to exit?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button className="btn btn-default" onClick={() => this.setState({showModal: false})}>Continue Writing</button>
+                        <button className="btn btn-danger" onClick={() => this.props.history.goBack()}>Yes, Exit</button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         )
     }
