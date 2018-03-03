@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getFollowers, getFollowing, submitSearch, getNotifications } from '../../redux/reducer';
 import { socketConnect } from 'socket.io-react';
+import NotificationPopUp from '../notificationPopUp/NotificationPopUp';
 
 class Header extends Component{
     constructor(){
@@ -62,6 +63,7 @@ class Header extends Component{
                     <a href={process.env.REACT_APP_AUTH0_LOGOUT}><i className="fas fa-sign-out-alt fa-2x" /></a>
                     
                 </div>
+                <NotificationPopUp notifications={this.props.notifications} />
             </div>
         )
     }
