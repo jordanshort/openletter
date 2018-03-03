@@ -3,7 +3,7 @@ import './Header.css';
 import '../../fontawesome-all';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getFollowers, getFollowing, submitSearch } from '../../redux/reducer';
+import { getFollowers, getFollowing, submitSearch, getNotifications } from '../../redux/reducer';
 import { socketConnect } from 'socket.io-react';
 
 class Header extends Component{
@@ -17,8 +17,12 @@ class Header extends Component{
     componentDidMount(){
         this.props.getFollowers();
         this.props.getFollowing();
+        this.props.getNotifications();
         this.props.socket.on('cosign', function(data){
             console.log(data);
+            alert(data);
+        });
+        this.props.socket.on('response', function(data){
             alert(data);
         });
     }
@@ -34,6 +38,7 @@ class Header extends Component{
     }
 
     render(){
+        console.log(this.props.notifications);
         return(
             <div className="header">
                 <div className="header-logo">OpenLetter</div>
@@ -68,5 +73,5 @@ function mapStateToProps(state){
     };
 };
 
-export default socketConnect(connect(mapStateToProps, { getFollowers, getFollowing, submitSearch })(Header));
+export default socketConnect(connect(mapStateToProps, { getFollowers, getFollowing, submitSearch, getNotifications })(Header));
 

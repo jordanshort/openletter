@@ -38,6 +38,7 @@ const SEARCH = 'SEARCH';
 const UPDATE_PICTURE = 'UPDATE_PICTURE';
 const GET_COSIGNERS = 'GET_COSIGNERS';
 const SAVE = 'SAVE';
+const GET_NOTIFICATIONS = 'GET_NOTIFICATIONS';
 
 
 //reducer
@@ -78,6 +79,8 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {user: {...state.user, picture: payload}});
         case GET_COSIGNERS + '_FULFILLED':
             return Object.assign({}, state, {cosigners: payload});
+        case GET_NOTIFICATIONS + '_FULFILLED':
+            return Object.assign({}, state, {notifications: payload});
         default: 
             return state;
     };
@@ -236,11 +239,12 @@ export function fetchFollowingLetters(){
     };
 };
 
-export function postResponse(body, letterid, history){
+export function postResponse(body, letterid, authorid, userid, history, socket){
     let promise = axios.post(`/response/${letterid}`, {text: body}).then(resp => {
         history.goBack();
         return resp.data;
     });
+    socket.emit('response', {letterID: letterid, authorID: authorid, userID: userid});
     return{
         type: POST_RESPONSE,
         payload: promise
@@ -290,6 +294,14 @@ export function save(id){
     });
     return{
         type: SAVE,
+        payload: promise
+    };
+};
+
+export function getNotifications(){
+    let promise = axios.get('/notifications').then(resp => resp.data);
+    return{
+        type: GET_NOTIFICATIONS,
         payload: promise
     };
 };

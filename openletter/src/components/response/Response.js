@@ -6,6 +6,8 @@ import ReactQuill from 'react-quill';
 import { connect } from 'react-redux';
 import { postResponse } from '../../redux/reducer';
 import { Modal } from 'react-bootstrap';
+import { socketConnect } from 'socket.io-react';
+
 
 
 class Response extends Component{
@@ -25,8 +27,8 @@ class Response extends Component{
     
 
     onSubmit(){
-        let { postResponse, history, match } = this.props;
-        postResponse(this.state.text, match.params.letterid, history);
+        let { postResponse, history, match, socket, user } = this.props;
+        postResponse(this.state.text, match.params.letterid, match.params.authorid, user.id, history, socket);
     };
 
 
@@ -81,4 +83,8 @@ class Response extends Component{
     }
 }
 
-export default connect(null, { postResponse })(Response);
+function mapStateToProps(state){
+    return{ user: state.user};
+}
+
+export default socketConnect(connect(mapStateToProps, { postResponse })(Response));

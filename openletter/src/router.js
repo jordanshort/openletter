@@ -26,7 +26,7 @@ export default (
         <Route path='/letter/:id' component={Letter} />
         <Route path='/editletter/:id' component={EditLetter} />
         <Route path='/network/:id' component={Network} />
-        <Route path='/response/:letterid' component={Response} />
+        <Route path='/response/:authorid/:letterid' component={Response} />
         <Route path ='/searchresults' component={SearchResults} />
         <Route path = '/saved' component={Saved} />
         <Route path='/' component={Login} />

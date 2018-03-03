@@ -46,6 +46,12 @@ module.exports = {
                 res.status(200).send(resp);
             });
         });
+    },
+
+    getNotifications: function(req, res){
+        req.app.get('db').getNotifications([req.user.id]).then(resp => {
+            res.status(200).send(resp);
+        });
     }
 
     

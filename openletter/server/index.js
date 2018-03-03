@@ -119,6 +119,7 @@ app.get('/following', networkctrl.getFollowing);
 app.get('/followers', networkctrl.getFollowers);
 app.get('/recommended', userctrl.getRecommended);
 app.post('/following/new', userctrl.addFollowing);
+app.get('/notifications', userctrl.getNotifications);
 
 //response endpoints
 app.post('/response/:letterid', responsectrl.postResponse);
@@ -141,6 +142,22 @@ io.on('connection', function(socket){
             });
         });
     });
+
+    socket.on('response', function(data){
+        let items = [
+            data.authorID,
+            data.userID,
+            data.letterID,
+            'responded to your letter'
+        ]
+        app.get('db').recordNotification(items).then(resp => {
+            app.get('db').findAuthor([resp[0].letter_id]).then(resp => {
+                if (resp[0].socket_id){
+                    io.sockets.connected[resp[0].socket_id].emit('response', 'Someone just responded to your letter!')
+                }
+            })
+        })
+    })
     
     socket.on('test', function(data){
         console.log(socket.id)

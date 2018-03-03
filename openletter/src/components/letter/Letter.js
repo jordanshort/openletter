@@ -93,7 +93,7 @@ class Home extends Component{
                             :
                             <button className="btn">Cosigned <i className="fas fa-check fa-xs"></i></button>
                             }
-                            <Link to={`/response/${selectedLetter.letter_id}`}><button className="btn">Respond</button></Link>
+                            <Link to={`/response/${selectedLetter.author_id}/${selectedLetter.letter_id}`}><button className="btn">Respond</button></Link>
                         </div>
                         {authorControls}
                     </div>
