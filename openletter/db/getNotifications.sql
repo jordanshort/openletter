@@ -1,4 +1,5 @@
-select notifications.creator_id, users.first_name, users.last_name,users.picture, notifications.letter_id, notifications.content
+select notifications.id, notifications.creator_id, users.first_name, users.last_name,
+users.picture, notifications.letter_id, notifications.content, notifications.seen, notifications.n_type
 from 
 notifications
 join users on users.id = notifications.creator_id

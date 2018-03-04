@@ -6,13 +6,17 @@ import { connect } from 'react-redux';
 import { getFollowers, getFollowing, submitSearch, getNotifications } from '../../redux/reducer';
 import { socketConnect } from 'socket.io-react';
 import NotificationPopUp from '../notificationPopUp/NotificationPopUp';
+import axios from 'axios';
 
 class Header extends Component{
     constructor(){
         super();
         this.state = {
-            term: ''
-        }
+            term: '',
+            showNotifications: false
+        };
+        this.handleClose = this.handleClose.bind(this);
+        this.markRead = this.markRead.bind(this);
     }
 
     componentDidMount(){
@@ -38,12 +42,20 @@ class Header extends Component{
         submitSearch({term: this.state.term}, history);
     }
 
+    handleClose(){
+        this.setState({showNotifications: false});
+    }
+
+    markRead(id){
+        axios.put('/notifications', {id})
+    }
+
     render(){
         console.log(this.props.notifications);
         return(
             <div className="header">
                 <div className="header-logo">OpenLetter</div>
-                <div>Notifications({this.props.notifications.length})</div>
+                <div onClick={() => this.setState({showNotifications: true})}>Notifications({this.props.notifications.length})</div>
                     <form className="input-group" onSubmit={(e) => this.onSubmit(e)}>
                         <input 
                         placeholder="Search"
@@ -63,7 +75,12 @@ class Header extends Component{
                     <a href={process.env.REACT_APP_AUTH0_LOGOUT}><i className="fas fa-sign-out-alt fa-2x" /></a>
                     
                 </div>
-                <NotificationPopUp notifications={this.props.notifications} />
+                <NotificationPopUp 
+                notifications={this.props.notifications} 
+                handleClose={this.handleClose} 
+                show={this.state.showNotifications}
+                markRead={this.markRead}
+                />
             </div>
         )
     }

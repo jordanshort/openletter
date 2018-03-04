@@ -120,6 +120,7 @@ app.get('/followers', networkctrl.getFollowers);
 app.get('/recommended', userctrl.getRecommended);
 app.post('/following/new', userctrl.addFollowing);
 app.get('/notifications', userctrl.getNotifications);
+app.put('/notifications', userctrl.markRead);
 
 //response endpoints
 app.post('/response/:letterid', responsectrl.postResponse);
@@ -148,7 +149,8 @@ io.on('connection', function(socket){
             data.authorID,
             data.userID,
             data.letterID,
-            'responded to your letter'
+            'responded to your letter',
+            'response'
         ]
         app.get('db').recordNotification(items).then(resp => {
             app.get('db').findAuthor([resp[0].letter_id]).then(resp => {

@@ -52,6 +52,12 @@ module.exports = {
         req.app.get('db').getNotifications([req.user.id]).then(resp => {
             res.status(200).send(resp);
         });
+    },
+
+    markRead: function(req, res){
+        req.app.get('db').markRead([req.body.id]).then(resp => {
+            res.status(200).send()
+        });
     }
 
     
