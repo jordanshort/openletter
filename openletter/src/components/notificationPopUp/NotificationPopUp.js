@@ -4,7 +4,6 @@ import './NotificationPopUp.css'
 import { Link } from 'react-router-dom';
 
 function NotificationPopUp(props){
-    const link = '';
     const notifications = props.notifications.map((note, i) => (
         <Link key={i} to={note.n_type === 'response' || note.n_type === 'cosign' ? `/letter/${note.letter_id}` : note.n_type === 'follow' ? `/profile/${note.creator_id}` : null }>
             <div className={!note.seen ? "notification-container" : "notification-container-seen"} onClick={() => props.markRead(note.id)}>

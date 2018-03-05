@@ -83,7 +83,7 @@ export default function reducer(state = initialState, action){
             return Object.assign({}, state, {notifications: payload});
         default: 
             return state;
-    };
+    }
 };
 
 //action creators
@@ -92,7 +92,10 @@ export function authenticated(history){
         getFollowing();
         getFollowers();
         return resp.data;
-    }).catch(err => history.push('/'));
+    }).catch(err => {
+        console.log(err);
+        history.push('/');
+});
 
     return{
         type: AUTHENTICATE_USER,
@@ -108,7 +111,7 @@ export function postLetter(letter, history){
 
     return{
         type: POST_LETTER,
-        payload: ['newPost']
+        payload: promise
     };
 };
 
@@ -125,7 +128,7 @@ export function fetchMyLetters(){
 export function fetchThisLetter(id){
     let promise = axios.get(`/letters/${id}`).then(resp => {
         return resp.data;
-    })
+    }).catch(err => console.log(err));
 
     return{
         type: FETCH_THIS_LETTER,

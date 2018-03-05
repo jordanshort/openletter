@@ -36,7 +36,7 @@ class AuthorProfile extends Component{
                         <div className="author-profile-job">{author.job}</div>
                         <div className="author-profile-employer">{author.employer}</div>
                         { following.findIndex((author) => {
-                            return author.id == match.params.id;
+                            return author.id === Number(match.params.id);
                         }) === -1 ? 
                             <button onClick={() => followAuthor(author.id)} className="btn btn-default">Follow</button>
                             :

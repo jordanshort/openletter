@@ -10,7 +10,7 @@ export default function ResponseCard(props){
         <div className="response-card">
             <div className="response-card-author">
                 <Link to={`/profile/${response.author_id}`} >
-                    <img src={response.picture} alt="Author's Picture"/>
+                    <img src={response.picture} alt="Author"/>
                     
                 </Link>
             </div>

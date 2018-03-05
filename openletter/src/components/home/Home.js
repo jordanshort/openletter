@@ -7,9 +7,7 @@ import { connect } from 'react-redux';
 import { authenticated, fetchFollowingLetters } from '../../redux/reducer';
 import { socketConnect } from 'socket.io-react';
 import axios from 'axios';
-import CosignerModal from '../cosignerModal/CosignerModal';
-// import socketIOClient from 'socket.io-client';
-// const socket = socketIOClient('http://localhost:4050');
+
 
 class Home extends Component{
     constructor(props){
@@ -20,7 +18,7 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        let { user, authenticated, history, fetchFollowingLetters, socket  } = this.props;
+        let { user, authenticated, history, fetchFollowingLetters } = this.props;
         if (!user.id){
             authenticated(history);
         }

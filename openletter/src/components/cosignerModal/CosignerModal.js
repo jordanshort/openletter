@@ -17,12 +17,12 @@ function CosignerModal(props) {
                     {cosigners.map((cosigner) => (
                         <div className="cosigner" key={cosigner.user_id}>
                             <Link to={`/profile/${cosigner.user_id}`}>
-                                <img src={cosigner.picture} alt="picture" />
+                                <img src={cosigner.picture} alt="cosigner" />
                                 <span>{cosigner.first_name} </span>
                                 <span>{cosigner.last_name}</span>
                             </Link>
                             {following.findIndex(elem => {
-                                return elem.id == cosigner.user_id
+                                return elem.id === cosigner.user_id
                             }) === -1 ?
                                 <button onClick={() => followAuthor(cosigner.user_id)}>Follow</button>
                                 :

@@ -9,7 +9,7 @@ function ResultsAuthor(props){
     return(
         <div className="results-author-card">
             <div className="results-author-card-picture">
-                <img id="results-auth-pic"src={result.picture} alt="author picture"/>
+                <img id="results-auth-pic"src={result.picture} alt="author"/>
             </div>
             <div className="results-author-card-names">
                 <Link to={`/profile/${result.author_id}`} >
@@ -18,7 +18,7 @@ function ResultsAuthor(props){
                 </Link>
             </div>
             {following.findIndex(elem => {
-                return elem.id == result.author_id
+                return elem.id === result.author_id
             }) === -1 ? 
             <button onClick={() => followAuthor(result.author_id)}>Follow</button>  
             :

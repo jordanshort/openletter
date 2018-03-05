@@ -17,7 +17,7 @@ class MyLetterCard extends Component{
             <div key={letter.letter_id} className="letter-card">
                 <div className="card-top">
                     <div className="card-author">
-                        <img className="pic" src={letter.picture} />
+                        <img className="pic" src={letter.picture} alt="author" />
                         <div className="name">{letter.first_name} {letter.last_name}</div>
                     </div>
                     <div className="card-details-container"><Link to={`/letter/${letter.letter_id}`}>

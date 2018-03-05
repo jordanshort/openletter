@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../header/Header';
 import './Profile.css';
-import LetterCard from '../letterCard/LetterCard';
 import { connect } from 'react-redux';
 import { fetchUser, updateProfile, getRecommended } from '../../redux/reducer';
 import EditProfile from './EditProfile';

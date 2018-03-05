@@ -6,7 +6,6 @@ import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 import { connect } from 'react-redux';
 import { postLetter } from '../../redux/reducer';
-import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 
 

@@ -4,7 +4,6 @@ import './Letter.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authenticated, fetchThisLetter, handleDelete, followAuthor, getResponses } from '../../redux/reducer';
-import renderHTML from 'react-render-html';
 import '../../fontawesome-all';
 import ResponseCard from '../responseCard/ResponseCard';
 import { socketConnect } from 'socket.io-react';
@@ -56,8 +55,8 @@ class Home extends Component{
 
     render(){
         // if (!this.props.user){ return null}
-        const { selectedLetter, match, following, handleDelete, history, socket, user, responses } = this.props;
-        const authorControls = this.props.user.id == this.props.selectedLetter.author_id ? 
+        const { selectedLetter, following, handleDelete, history, user, responses } = this.props;
+        const authorControls = this.props.user.id === this.props.selectedLetter.author_id ? 
                 <div className="letter-author-container">
                     <Link to={`/editletter/${selectedLetter.letter_id}`}><button className="btn">Edit</button></Link>
                     <button onClick={() => handleDelete(selectedLetter.letter_id, history)} className="btn">Delete</button>
@@ -78,7 +77,7 @@ class Home extends Component{
                             <div>{selectedLetter.first_name} {selectedLetter.last_name}</div>
                             </Link>
                             {following.findIndex((author) => {
-                                return author.id == selectedLetter.author_id;
+                                return author.id === selectedLetter.author_id;
                                 }) === -1 ? 
                                 <button onClick={() => followAuthor(selectedLetter.author_id)} className=" letter-follow">Follow</button>
                                 :
@@ -87,7 +86,7 @@ class Home extends Component{
                         </div>
                         <div className="letter-author-container">
                             {this.state.cosigners.findIndex((cosigner) => {
-                                return cosigner.user_id == user.id;
+                                return cosigner.user_id === user.id;
                             }) === -1 ? 
                             <button onClick={() => this.handleCosign()}className="btn">Cosign</button>
                             :

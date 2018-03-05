@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../myLetterCard/MyLetterCard.css';
 import { connect } from 'react-redux';
-import { fetchAuthorLetters, getCosigners, save } from '../../redux/reducer';
+import { getCosigners, save } from '../../redux/reducer';
 import { Link } from 'react-router-dom';
 import CosignerModal from '../cosignerModal/CosignerModal';
 import '../../fontawesome-all';
@@ -26,7 +26,7 @@ class LetterCard extends Component{
             <div className="letter-card">
                 <div className="card-top">
                     <div className="card-author">
-                        <img className="pic" src={letter.picture} />
+                        <img className="pic" src={letter.picture} alt="author" />
                         <div className="name"><Link to={`/profile/${letter.author_id}`}>{letter.first_name} {letter.last_name}</Link></div>
                     </div>
                     <div className="card-details-container"><Link to={`/letter/${letter.letter_id}`}>
