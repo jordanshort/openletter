@@ -36,7 +36,7 @@ class Home extends Component{
 
     handleCosign(){
         let {user, selectedLetter, socket} = this.props;
-        socket.emit('cosign', {userId: user.id, letterId: selectedLetter.letter_id});
+        socket.emit('cosign', {userID: user.id, letterID: selectedLetter.letter_id, authorID: selectedLetter.author_id});
         this.getCosigners();
     }
 

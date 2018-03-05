@@ -13,7 +13,8 @@ class Header extends Component{
         super();
         this.state = {
             term: '',
-            showNotifications: false
+            showNotifications: false,
+            updateNotifications: false
         };
         this.handleClose = this.handleClose.bind(this);
         this.markRead = this.markRead.bind(this);
@@ -24,8 +25,6 @@ class Header extends Component{
         this.props.getFollowing();
         this.props.getNotifications();
         this.props.socket.on('cosign', function(data){
-            console.log(data);
-            alert(data);
         });
         this.props.socket.on('response', function(data){
             alert(data);
@@ -51,11 +50,13 @@ class Header extends Component{
     }
 
     render(){
-        console.log(this.props.notifications);
+        const count = this.props.notifications.filter(note => {
+            return note.seen === false;
+        })
         return(
             <div className="header">
                 <div className="header-logo">OpenLetter</div>
-                <div onClick={() => this.setState({showNotifications: true})}>Notifications({this.props.notifications.length})</div>
+                <div id="notifications" onClick={() => this.setState({showNotifications: true})}>Notifications<div id="note-count">{count.length}</div></div>
                     <form className="input-group" onSubmit={(e) => this.onSubmit(e)}>
                         <input 
                         placeholder="Search"

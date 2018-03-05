@@ -54,7 +54,7 @@ class Home extends Component{
                             <h4 id="welcome">Welcome {this.props.user ? this.props.user.first_name : 'nameholder'}</h4>                            
                             <Link to="/myletters"><h4>My Letters</h4></Link>
                             <Link to="/saved"><h4>Saved For Later</h4></Link>
-                            <h4>Subscriptions</h4>
+                            {/* <h4>Subscriptions</h4> */}
                         </div>
                     </div>
                     <div className="myletters-scroll-container">

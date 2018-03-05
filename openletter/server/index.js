@@ -135,13 +135,23 @@ io.on('connection', function(socket){
     });
 
     socket.on('cosign', function(data){
-        app.get('db').letterCosign([data.userId, data.letterId]).then(resp => {
-            app.get('db').findAuthor([resp[0].letter_id]).then(resp => {
-                if (resp[0].socket_id){
-                io.sockets.connected[resp[0].socket_id].emit('cosign', 'Someone just cosigned your letter!');
-                }
-            });
-        });
+        let items = [
+            data.authorID,
+            data.userID,
+            data.letterID,
+            'cosigned your letter', 
+            'cosign'
+        ]
+        app.get('db').letterCosign([data.userID, data.letterID]).then(resp => {
+            app.get('db').recordNotification(items).then(resp => {
+                app.get('db').findAuthor([resp[0].letter_id]).then(resp => {
+                    if (resp[0].socket_id){
+                    io.sockets.connected[resp[0].socket_id].emit('cosign', 'Someone just cosigned your letter!');
+                    }
+                });
+            })
+        })
+            
     });
 
     socket.on('response', function(data){

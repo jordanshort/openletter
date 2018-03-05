@@ -45,7 +45,7 @@ class AuthorProfile extends Component{
                     </div>
                     
                     <div className="author-letters">
-                        <span>Author's Letters</span>
+                        <span id="authors-letters-title">Author's Letters</span>
                         {authLetters}
                     </div>
                 </div>

@@ -24,6 +24,25 @@
         
 }
 
+#notifications:hover {
+    cursor: pointer;
+}
+
+#notifications {
+    font-family: 'Open Sans', sans-serif;
+    color: #9da1a4;
+    display: flex;
+}
+
+#note-count {
+    margin-left: 2px;
+    background: red;
+    border-radius: 50%;
+    height: 17px;
+    width: 17px;
+    color: white;
+}
+
 .input-group {
     width: 375px;
 }
@@ -45,12 +64,9 @@
     color: #7d8186;
     
 }
-.input-group a {
-    
-}
 
 .header-nav a {
-    /* color: #3C474B; */
+    margin-right: 5px;
 }
 
 

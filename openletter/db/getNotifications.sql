@@ -3,5 +3,6 @@ users.picture, notifications.letter_id, notifications.content, notifications.see
 from 
 notifications
 join users on users.id = notifications.creator_id
-where notifications.user_id = 1 and 
-notifications.created_at >= now() - '2 days'::interval;
+where notifications.user_id = $1 and 
+notifications.created_at >= now() - '2 days'::interval
+order by notifications.created_at desc

@@ -2,6 +2,7 @@
 
 .author-profile-root {
     width: 100vw;
+    min-height: 100vh;
     display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -33,6 +34,12 @@
     background: #f2f2f2;
     margin-top: 10px;
     text-align: left;
+    margin-bottom: 80px;
+}
+
+#authors-letters-title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
 }
 
 .author-profile-picture {
