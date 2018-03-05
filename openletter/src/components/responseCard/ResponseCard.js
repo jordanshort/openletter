@@ -11,13 +11,17 @@ export default function ResponseCard(props){
             <div className="response-card-author">
                 <Link to={`/profile/${response.author_id}`} >
                     <img src={response.picture} alt="Author's Picture"/>
-                    <div>
-                        <span>{response.first_name}</span>
-                        <span>{response.last_name}</span>
-                    </div>
+                    
                 </Link>
             </div>
-            <div className="response-card-content">{renderHTML(response.content)}</div>
+            <div className="response-card-body">
+                <div className="response-card-names">
+                    <span>{response.first_name}</span> 
+                    <span>{response.last_name}</span>
+                </div>
+                <div className="response-card-content">{renderHTML(response.content)}</div>
+            </div>
+            
         </div>
     )
 }
