@@ -50,6 +50,8 @@ class Header extends Component{
     }
 
     render(){
+        console.log(this.props.notifications);
+        
         const count = !this.props.notifications.length ? [] : this.props.notifications.filter(note => {
             return note.seen === false;
         })
