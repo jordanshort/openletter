@@ -13,6 +13,7 @@ import Network from './components/network/Network';
 import Response from './components/response/Response';
 import SearchResults from './components/searchResults/SearchResults';
 import Saved from './components/saved/Saved';
+import MyLetter from './components/myLetter/MyLetter';
 
 
 
@@ -29,6 +30,7 @@ export default (
         <Route path='/response/:authorid/:letterid' component={Response} />
         <Route path ='/searchresults' component={SearchResults} />
         <Route path = '/saved' component={Saved} />
+        <Route path = '/myletter/:id' component={MyLetter} />
         <Route path='/' component={Login} />
     </Switch>
 )

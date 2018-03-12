@@ -95,6 +95,9 @@ class Profile extends Component{
     render(){
         // if (!this.props.user){return null};
         const { user, following, followers, recommended, history } = this.props;
+        const recNoDups = recommended.filter((author, i, arr) => {
+            return i === arr.findIndex(elem => elem.id === author.id);
+        })
         return(
             <div className="user-profile-root">
                 <Header history={history} />
@@ -154,8 +157,8 @@ class Profile extends Component{
                             </div>
                             <div className="recommended-wrapper">
                                 {!recommended.length ? null :
-                                    recommended.map(author => (
-                                        <AuthorCard author={author} />
+                                    recNoDups.map(author => (
+                                        <AuthorCard key={author.id} author={author} />
                                     ))}
                             </div> 
                         </div>

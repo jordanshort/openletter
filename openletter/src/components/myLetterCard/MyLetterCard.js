@@ -20,7 +20,7 @@ class MyLetterCard extends Component{
                         <img className="pic" src={letter.picture} alt="author" />
                         <div className="name">{letter.first_name} {letter.last_name}</div>
                     </div>
-                    <div className="card-details-container"><Link to={`/letter/${letter.letter_id}`}>
+                    <div className="card-details-container"><Link to={`/myletter/${letter.letter_id}`}>
                         <div className="card-details">
                             <div className="card-title">{letter.title}</div>
                             <div className="addressee">Addressed To {letter.addressed_to}</div>
